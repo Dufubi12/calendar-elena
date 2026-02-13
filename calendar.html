@@ -254,18 +254,48 @@ const LS_KEY='calendar_data';
 
 // ===== STORAGE =====
 async function loadData(){
-  // Try server first, fallback to localStorage
+  // 1. Check localStorage first
+  const saved=localStorage.getItem(LS_KEY);
+  if(saved){
+    try{
+      DATA=JSON.parse(saved);
+      if(DATA.students&&DATA.students.length>0){
+        // Have data in localStorage, use it
+        useServer=false;
+        return;
+      }
+    }catch(e){}
+  }
+
+  // 2. If no data in localStorage, try to load from data.json (initial data)
+  try{
+    const r=await fetch('/data.json');
+    if(r.ok){
+      DATA=await r.json();
+      // Save to localStorage for future use
+      localStorage.setItem(LS_KEY,JSON.stringify(DATA));
+      console.log('Loaded initial data from data.json');
+      useServer=false;
+      return;
+    }
+  }catch(e){
+    console.log('Could not load data.json:',e);
+  }
+
+  // 3. Try API endpoint as last resort
   try{
     const r=await fetch('/api/data');
     if(r.ok){
       DATA=await r.json();
       useServer=true;
-    }else throw new Error('no server');
+      return;
+    }
   }catch(e){
-    useServer=false;
-    const saved=localStorage.getItem(LS_KEY);
-    if(saved){try{DATA=JSON.parse(saved)}catch(e2){}}
+    console.log('Could not load from API:',e);
   }
+
+  // 4. Fallback to empty data
+  useServer=false;
   if(!DATA.students)DATA.students=[];
   if(!DATA.lessons)DATA.lessons=[];
   if(!DATA.attendance)DATA.attendance={};
