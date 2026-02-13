@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Календарь</title>
+<style>
+  :root {
+    --bg:#f5f7fa; --card:#fff; --primary:#4a6cf7; --primary-light:#e8edff;
+    --success:#22c55e; --success-light:#dcfce7; --warning:#f59e0b; --warning-light:#fef3c7;
+    --danger:#ef4444; --danger-light:#fee2e2; --gray:#6b7280; --gray-light:#f3f4f6;
+    --border:#e5e7eb; --text:#1f2937; --text-light:#9ca3af;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+
+  .header{background:linear-gradient(135deg,#4a6cf7,#6366f1);color:#fff;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .header h1{font-size:22px;font-weight:600}
+  .tabs{display:flex;gap:4px;background:rgba(255,255,255,.15);border-radius:10px;padding:4px}
+  .tab{padding:7px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);border:none;background:none;transition:all .2s}
+  .tab:hover{color:#fff;background:rgba(255,255,255,.1)}
+  .tab.active{background:#fff;color:var(--primary)}
+
+  .container{max-width:1200px;margin:0 auto;padding:24px}
+  .hidden{display:none!important}
+
+  /* Calendar */
+  .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .cal-nav h2{font-size:20px;font-weight:600}
+  .btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:var(--text);transition:all .15s}
+  .btn:hover{background:var(--primary-light);color:var(--primary)}
+  .btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .btn-primary:hover{background:#3b5de7}
+  .btn-danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+  .btn-danger:hover{background:#dc2626}
+  .btn-sm{padding:4px 10px;font-size:12px}
+
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .cal-hdr{background:var(--gray-light);padding:10px 4px;text-align:center;font-size:13px;font-weight:600;color:var(--gray)}
+  .cal-cell{min-height:90px;padding:5px;background:var(--card);cursor:pointer;transition:background .1s;position:relative}
+  .cal-cell:hover{background:#fafbff}
+  .cal-cell.other{background:var(--gray-light);opacity:.4}
+  .cal-cell.today{box-shadow:inset 0 0 0 2px var(--primary)}
+  .cal-day{font-size:12px;font-weight:600;color:var(--gray);margin-bottom:3px}
+  .cal-cell.today .cal-day{color:var(--primary)}
+  .cal-ev{font-size:10px;padding:1px 5px;border-radius:3px;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cal-ev.ind{background:var(--primary-light);color:#3b4fd4;border-left:2px solid var(--primary)}
+  .cal-ev.grp{background:var(--warning-light);color:#92400e;border-left:2px solid var(--warning)}
+  .cal-ev.ok{border-left-color:var(--success)}
+  .cal-ev.no{border-left-color:var(--danger)}
+  .cal-more{font-size:10px;color:var(--primary);font-weight:500}
+
+  /* Forms & Modals */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;justify-content:center;align-items:flex-start;padding-top:60px}
+  .overlay.open{display:flex}
+  .modal{background:var(--card);border-radius:14px;width:90%;max-width:520px;max-height:80vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+  .modal h3{font-size:17px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+  .modal-x{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray);padding:0 4px}
+  .modal-x:hover{color:var(--text)}
+
+  .form-row{margin-bottom:12px}
+  .form-row label{display:block;font-size:13px;font-weight:500;margin-bottom:4px;color:var(--gray)}
+  .form-row input,.form-row select,.form-row textarea{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit}
+  .form-row input:focus,.form-row select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(74,108,247,.15)}
+  .form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+
+  /* Cards */
+  .card{background:var(--card);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:12px;overflow:hidden}
+  .card-hdr{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+  .card-hdr:hover{background:var(--gray-light)}
+  .card-body{padding:0 18px 14px;display:none}
+  .card-body.open{display:block}
+
+  .student-name{font-size:15px;font-weight:600}
+  .student-info{font-size:12px;color:var(--gray)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
+  .badge-ok{background:var(--success-light);color:#15803d}
+  .badge-no{background:var(--danger-light);color:#b91c1c}
+  .badge-gray{background:var(--gray-light);color:var(--gray)}
+
+  .lesson-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .lesson-row:last-child{border:none}
+
+  /* Attendance table */
+  .att-wrap{overflow-x:auto}
+  .att-tbl{width:100%;border-collapse:collapse;font-size:12px}
+  .att-tbl th,.att-tbl td{padding:6px 8px;text-align:center;border-bottom:1px solid var(--border)}
+  .att-tbl th{background:var(--gray-light);font-weight:600;color:var(--gray);position:sticky;top:0}
+  .att-tbl td:first-child,.att-tbl th:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;min-width:140px;font-weight:500}
+  .att-tbl th:first-child{background:var(--gray-light);z-index:2}
+  .att-dot{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;user-select:none}
+  .att-dot.yes{background:var(--success-light);color:var(--success)}
+  .att-dot.no{background:var(--danger-light);color:var(--danger)}
+
+  .section-title{font-size:17px;font-weight:600;margin-bottom:12px}
+  .empty{text-align:center;padding:40px;color:var(--text-light);font-size:14px}
+
+  @media(max-width:768px){
+    .header{padding:14px}
+    .header h1{font-size:17px}
+    .container{padding:14px}
+    .cal-cell{min-height:60px;padding:3px}
+    .cal-ev{font-size:9px}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Календарь</h1>
+  <div class="tabs">
+    <button class="tab active" onclick="showView('calendar',this)">Календарь</button>
+    <button class="tab" onclick="showView('students',this)">Ученики</button>
+    <button class="tab" onclick="showView('schedule',this)">Расписание</button>
+    <button class="tab" onclick="showView('attendance',this)">Посещаемость</button>
+  </div>
+</div>
+
+<div class="container">
+  <!-- ========== CALENDAR ========== -->
+  <div id="v-calendar">
+    <div class="cal-nav">
+      <button class="btn" onclick="chgMonth(-1)">&larr;</button>
+      <h2 id="month-label"></h2>
+      <button class="btn" onclick="chgMonth(1)">&rarr;</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <!-- ========== STUDENTS ========== -->
+  <div id="v-students" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="section-title">Ученики</div>
+      <button class="btn btn-primary" onclick="openAddStudent()">+ Добавить ученика</button>
+    </div>
+    <div id="students-list"></div>
+  </div>
+
+  <!-- ========== SCHEDULE ========== -->
+  <div id="v-schedule" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="section-title">Расписание занятий</div>
+      <button class="btn btn-primary" onclick="openAddLesson()">+ Добавить занятие</button>
+    </div>
+    <div id="schedule-list"></div>
+  </div>
+
+  <!-- ========== ATTENDANCE ========== -->
+  <div id="v-attendance" class="hidden">
+    <div class="section-title">Посещаемость</div>
+    <div id="att-content"></div>
+  </div>
+</div>
+
+<!-- ===== Day Detail Modal ===== -->
+<div class="overlay" id="m-day" onclick="if(event.target===this)closeAll()">
+  <div class="modal">
+    <h3><span id="m-day-title"></span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <div id="m-day-body"></div>
+  </div>
+</div>
+
+<!-- ===== Add/Edit Student Modal ===== -->
+<div class="overlay" id="m-student" onclick="if(event.target===this)closeAll()">
+  <div class="modal">
+    <h3><span id="m-student-title">Добавить ученика</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <div class="form-row"><label>Имя ученика</label><input id="f-sname" placeholder="Фамилия Имя"></div>
+    <div class="form-row"><label>Предметы / описание</label><input id="f-sdesc" placeholder="математика, русский..."></div>
+    <div class="form-row"><label>Группа (необязательно)</label><input id="f-sgroup" placeholder="ПКШ, Книготерапия..."></div>
+    <div class="form-actions">
+      <button class="btn" onclick="closeAll()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveStudent()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Add Lesson Modal ===== -->
+<div class="overlay" id="m-lesson" onclick="if(event.target===this)closeAll()">
+  <div class="modal">
+    <h3><span>Добавить занятие</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <div class="form-row"><label>Ученик</label><select id="f-lstudent"></select></div>
+    <div class="form-row"><label>Предмет</label><input id="f-lsubject" placeholder="математика"></div>
+    <div class="form-row"><label>Дата</label><input id="f-ldate" type="date"></div>
+    <div class="form-row"><label>Время (необязательно)</label><input id="f-ltime" type="time"></div>
+    <div class="form-actions">
+      <button class="btn" onclick="closeAll()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveLesson()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MR=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const DR=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const DF=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+
+let DATA={students:[],lessons:[],attendance:{}};
+let curY,curM,editStudentId=null;
+let useServer=false;
+
+const LS_KEY='calendar_data';
+
+// ===== STORAGE =====
+async function loadData(){
+  // Try server first, fallback to localStorage
+  try{
+    const r=await fetch('/api/data');
+    if(r.ok){
+      DATA=await r.json();
+      useServer=true;
+    }else throw new Error('no server');
+  }catch(e){
+    useServer=false;
+    const saved=localStorage.getItem(LS_KEY);
+    if(saved){try{DATA=JSON.parse(saved)}catch(e2){}}
+  }
+  if(!DATA.students)DATA.students=[];
+  if(!DATA.lessons)DATA.lessons=[];
+  if(!DATA.attendance)DATA.attendance={};
+}
+async function saveData(){
+  // Save to localStorage always
+  localStorage.setItem(LS_KEY,JSON.stringify(DATA));
+  // Also try server if available
+  if(useServer){
+    try{
+      await fetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(DATA)});
+    }catch(e){useServer=false}
+  }
+}
+
+// ===== INIT =====
+(async()=>{
+  const n=new Date();curY=n.getFullYear();curM=n.getMonth();
+  await loadData();
+  render();
+})();
+
+function render(){renderCal();renderStudents();renderSchedule();renderAtt()}
+
+// ===== VIEWS =====
+function showView(v,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  ['calendar','students','schedule','attendance'].forEach(id=>{
+    document.getElementById('v-'+id).classList.toggle('hidden',id!==v);
+  });
+  if(v==='attendance')renderAtt();
+}
+
+function closeAll(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'))}
+
+// ===== CALENDAR =====
+function chgMonth(d){curM+=d;if(curM>11){curM=0;curY++}if(curM<0){curM=11;curY--}renderCal()}
+
+function getLessonsForDate(ds){return DATA.lessons.filter(l=>l.date===ds)}
+
+function renderCal(){
+  const g=document.getElementById('cal-grid');
+  document.getElementById('month-label').textContent=MR[curM]+' '+curY;
+  let h='';
+  DR.forEach(d=>{h+='<div class="cal-hdr">'+d+'</div>'});
+  const fd=new Date(curY,curM,1);let sd=fd.getDay();sd=sd===0?6:sd-1;
+  const dim=new Date(curY,curM+1,0).getDate();
+  const pdm=new Date(curY,curM,0).getDate();
+  const today=new Date().toISOString().slice(0,10);
+
+  for(let i=sd-1;i>=0;i--){
+    const day=pdm-i,m=curM===0?11:curM-1,y=curM===0?curY-1:curY;
+    h+=mkCell(day,fmtD(y,m,day),true,false);
+  }
+  for(let day=1;day<=dim;day++){
+    const ds=fmtD(curY,curM,day);
+    h+=mkCell(day,ds,false,ds===today);
+  }
+  const tot=sd+dim,rem=(7-tot%7)%7;
+  for(let day=1;day<=rem;day++){
+    const m=curM===11?0:curM+1,y=curM===11?curY+1:curY;
+    h+=mkCell(day,fmtD(y,m,day),true,false);
+  }
+  g.innerHTML=h;
+}
+
+function fmtD(y,m,d){return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0')}
+
+function mkCell(day,ds,other,isToday){
+  const les=getLessonsForDate(ds);
+  const cls=['cal-cell'];if(other)cls.push('other');if(isToday)cls.push('today');
+  let h='<div class="'+cls.join(' ')+'" onclick="showDay(\''+ds+'\')">';
+  h+='<div class="cal-day">'+day+'</div>';
+  const mx=3;
+  les.slice(0,mx).forEach(l=>{
+    const s=getStudent(l.studentId);
+    const att=DATA.attendance[l.date+'_'+l.studentId+'_'+l.subject];
+    let ac=att===true?'ok':att===false?'no':'';
+    h+='<div class="cal-ev ind '+ac+'">'+(s?s.name.split(' ').pop():'')+': '+l.subject+'</div>';
+  });
+  if(les.length>mx)h+='<div class="cal-more">+' +(les.length-mx)+' ещё</div>';
+  h+='</div>';return h;
+}
+
+function showDay(ds){
+  const les=getLessonsForDate(ds);
+  if(!les.length)return;
+  const d=new Date(ds+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
+  document.getElementById('m-day-title').textContent=DF[di]+', '+d.getDate()+' '+MR[d.getMonth()].toLowerCase()+' '+d.getFullYear();
+  let h='';
+  les.forEach(l=>{
+    const s=getStudent(l.studentId);
+    const key=l.date+'_'+l.studentId+'_'+l.subject;
+    const att=DATA.attendance[key];
+    h+='<div class="lesson-row">';
+    h+='<div style="flex:1"><strong>'+(s?s.name:'?')+'</strong> — '+l.subject+(l.time?' ('+l.time+')':'')+'</div>';
+    h+='<span class="att-dot '+(att===true?'yes':att===false?'no':'')+'" onclick="toggleAtt(\''+key+'\',this)" title="Клик = отметить">'+(att===true?'+':att===false?'-':'?')+'</span>';
+    h+='</div>';
+  });
+  document.getElementById('m-day-body').innerHTML=h;
+  document.getElementById('m-day').classList.add('open');
+}
+
+async function toggleAtt(key,el){
+  const cur=DATA.attendance[key];
+  if(cur===true)DATA.attendance[key]=false;
+  else if(cur===false)delete DATA.attendance[key];
+  else DATA.attendance[key]=true;
+  await saveData();
+  const v=DATA.attendance[key];
+  el.className='att-dot '+(v===true?'yes':v===false?'no':'');
+  el.textContent=v===true?'+':v===false?'-':'?';
+  renderCal();
+}
+
+// ===== STUDENTS =====
+function getStudent(id){return DATA.students.find(s=>s.id===id)}
+let openCards={};
+
+function renderStudents(){
+  const c=document.getElementById('students-list');
+  if(!DATA.students.length){c.innerHTML='<div class="empty">Нет учеников. Нажмите "Добавить ученика".</div>';return}
+  let h='';
+  DATA.students.forEach(s=>{
+    const lesCount=DATA.lessons.filter(l=>l.studentId===s.id).length;
+    h+='<div class="card"><div class="card-hdr" onclick="togCard(\'s'+s.id+'\')">';
+    h+='<div><div class="student-name">'+s.name+'</div><div class="student-info">'+s.desc+' | Занятий: '+lesCount+(s.group?' | Группа: '+s.group:'')+'</div></div>';
+    h+='<div style="display:flex;gap:6px"><button class="btn btn-sm" onclick="event.stopPropagation();editStudent(\''+s.id+'\')">Ред.</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();delStudent(\''+s.id+'\')">X</button></div>';
+    h+='</div><div class="card-body'+(openCards['s'+s.id]?' open':'')+'" id="cb-s'+s.id+'">';
+    const les=DATA.lessons.filter(l=>l.studentId===s.id).sort((a,b)=>a.date.localeCompare(b.date));
+    if(les.length){
+      les.forEach(l=>{
+        const d=new Date(l.date+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
+        const key=l.date+'_'+l.studentId+'_'+l.subject;
+        const att=DATA.attendance[key];
+        h+='<div class="lesson-row"><div style="min-width:100px;color:var(--gray)">'+d.getDate()+'.'+String(d.getMonth()+1).padStart(2,'0')+' '+DR[di]+'</div>';
+        h+='<div style="flex:1;font-weight:500">'+l.subject+'</div>';
+        h+=(l.time?'<div style="color:var(--gray);font-size:12px">'+l.time+'</div>':'');
+        h+='<span class="badge '+(att===true?'badge-ok':att===false?'badge-no':'badge-gray')+'">'+(att===true?'пришёл':att===false?'пропуск':'—')+'</span></div>';
+      });
+    }else h+='<div class="empty">Занятий пока нет</div>';
+    h+='</div></div>';
+  });
+  c.innerHTML=h;
+}
+
+function togCard(id){
+  openCards[id]=!openCards[id];
+  const el=document.getElementById('cb-'+id);
+  if(el)el.classList.toggle('open');
+}
+
+function openAddStudent(){
+  editStudentId=null;
+  document.getElementById('m-student-title').textContent='Добавить ученика';
+  document.getElementById('f-sname').value='';
+  document.getElementById('f-sdesc').value='';
+  document.getElementById('f-sgroup').value='';
+  document.getElementById('m-student').classList.add('open');
+}
+
+function editStudent(id){
+  const s=getStudent(id);if(!s)return;
+  editStudentId=id;
+  document.getElementById('m-student-title').textContent='Редактировать ученика';
+  document.getElementById('f-sname').value=s.name;
+  document.getElementById('f-sdesc').value=s.desc;
+  document.getElementById('f-sgroup').value=s.group||'';
+  document.getElementById('m-student').classList.add('open');
+}
+
+async function saveStudent(){
+  const name=document.getElementById('f-sname').value.trim();
+  if(!name){alert('Введите имя');return}
+  const desc=document.getElementById('f-sdesc').value.trim();
+  const group=document.getElementById('f-sgroup').value.trim();
+  if(editStudentId){
+    const s=getStudent(editStudentId);
+    if(s){s.name=name;s.desc=desc;s.group=group}
+  }else{
+    DATA.students.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),name,desc,group});
+  }
+  await saveData();closeAll();render();
+}
+
+async function delStudent(id){
+  if(!confirm('Удалить ученика и все его занятия?'))return;
+  DATA.students=DATA.students.filter(s=>s.id!==id);
+  DATA.lessons=DATA.lessons.filter(l=>l.studentId!==id);
+  // clean attendance
+  Object.keys(DATA.attendance).forEach(k=>{if(k.includes('_'+id+'_'))delete DATA.attendance[k]});
+  await saveData();render();
+}
+
+// ===== SCHEDULE =====
+function renderSchedule(){
+  const c=document.getElementById('schedule-list');
+  if(!DATA.lessons.length){c.innerHTML='<div class="empty">Нет занятий. Нажмите "Добавить занятие".</div>';return}
+  // group by student
+  const byStudent={};
+  DATA.lessons.forEach(l=>{
+    if(!byStudent[l.studentId])byStudent[l.studentId]=[];
+    byStudent[l.studentId].push(l);
+  });
+  let h='';
+  Object.keys(byStudent).forEach(sid=>{
+    const s=getStudent(sid);
+    const les=byStudent[sid].sort((a,b)=>a.date.localeCompare(b.date));
+    h+='<div class="card"><div class="card-hdr" onclick="togCard(\'l'+sid+'\')">';
+    h+='<div><div class="student-name">'+(s?s.name:'Удалённый ученик')+'</div><div class="student-info">'+les.length+' занятий</div></div></div>';
+    h+='<div class="card-body'+(openCards['l'+sid]?' open':'')+'" id="cb-l'+sid+'">';
+    les.forEach(l=>{
+      const d=new Date(l.date+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
+      h+='<div class="lesson-row"><div style="min-width:100px;color:var(--gray)">'+d.getDate()+'.'+String(d.getMonth()+1).padStart(2,'0')+' '+DR[di]+'</div>';
+      h+='<div style="flex:1;font-weight:500">'+l.subject+'</div>';
+      h+=(l.time?'<div style="color:var(--gray);font-size:12px">'+l.time+'</div>':'');
+      h+='<button class="btn btn-sm btn-danger" onclick="delLesson(\''+l.id+'\')">X</button></div>';
+    });
+    h+='</div></div>';
+  });
+  c.innerHTML=h;
+}
+
+function openAddLesson(){
+  if(!DATA.students.length){alert('Сначала добавьте ученика');return}
+  const sel=document.getElementById('f-lstudent');
+  sel.innerHTML=DATA.students.map(s=>'<option value="'+s.id+'">'+s.name+'</option>').join('');
+  document.getElementById('f-lsubject').value='';
+  document.getElementById('f-ldate').value='';
+  document.getElementById('f-ltime').value='';
+  document.getElementById('m-lesson').classList.add('open');
+}
+
+async function saveLesson(){
+  const studentId=document.getElementById('f-lstudent').value;
+  const subject=document.getElementById('f-lsubject').value.trim();
+  const date=document.getElementById('f-ldate').value;
+  const time=document.getElementById('f-ltime').value;
+  if(!subject||!date){alert('Заполните предмет и дату');return}
+  DATA.lessons.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),studentId,subject,date,time});
+  await saveData();closeAll();render();
+}
+
+async function delLesson(id){
+  DATA.lessons=DATA.lessons.filter(l=>l.id!==id);
+  await saveData();render();
+}
+
+// ===== ATTENDANCE VIEW =====
+function renderAtt(){
+  const c=document.getElementById('att-content');
+  if(!DATA.students.length||!DATA.lessons.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для отслеживания посещаемости</div>';return}
+
+  // Get all unique dates
+  const allDates=[...new Set(DATA.lessons.map(l=>l.date))].sort();
+  if(!allDates.length){c.innerHTML='<div class="empty">Нет занятий</div>';return}
+
+  // Group by month
+  const byMonth={};
+  allDates.forEach(ds=>{
+    const key=ds.slice(0,7);
+    if(!byMonth[key])byMonth[key]=[];
+    byMonth[key].push(ds);
+  });
+
+  let h='';
+  Object.keys(byMonth).sort().forEach(mk=>{
+    const dates=byMonth[mk];
+    const [y,m]=mk.split('-').map(Number);
+    h+='<div style="margin-bottom:24px"><div class="section-title">'+MR[m-1]+' '+y+'</div>';
+    h+='<div class="card"><div class="att-wrap"><table class="att-tbl"><thead><tr><th>Ученик</th>';
+    dates.forEach(ds=>{
+      const d=new Date(ds+'T00:00:00');
+      h+='<th>'+d.getDate()+'</th>';
+    });
+    h+='</tr></thead><tbody>';
+
+    DATA.students.forEach(s=>{
+      // Check if student has any lessons on these dates
+      const hasLessons=dates.some(ds=>DATA.lessons.some(l=>l.studentId===s.id&&l.date===ds));
+      if(!hasLessons)return;
+
+      h+='<tr><td>'+s.name+'</td>';
+      dates.forEach(ds=>{
+        const sLessons=DATA.lessons.filter(l=>l.studentId===s.id&&l.date===ds);
+        if(!sLessons.length){h+='<td>—</td>';return}
+        // Summarize: all attended, some, none
+        const keys=sLessons.map(l=>l.date+'_'+l.studentId+'_'+l.subject);
+        const attended=keys.filter(k=>DATA.attendance[k]===true).length;
+        const total=keys.length;
+        if(attended===total&&total>0)h+='<td><span class="att-dot yes" title="'+attended+'/'+total+'">+</span></td>';
+        else if(attended>0)h+='<td><span class="att-dot" style="background:#fef3c7;color:#92400e" title="'+attended+'/'+total+'">~</span></td>';
+        else{
+          const absent=keys.filter(k=>DATA.attendance[k]===false).length;
+          if(absent>0)h+='<td><span class="att-dot no" title="отмечен пропуск">-</span></td>';
+          else h+='<td><span class="att-dot" title="не отмечено">?</span></td>';
+        }
+      });
+      h+='</tr>';
+    });
+    h+='</tbody></table></div></div></div>';
+  });
+  c.innerHTML=h;
+}
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeAll();
+});
+</script>
+</body>
+</html>

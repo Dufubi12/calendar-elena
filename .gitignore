@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.vercel/
+node_modules/
+.env
+.claude/
+Temploy/.agent/
+Temploy/.vscode/

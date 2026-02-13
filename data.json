@@ -1,0 +1,2238 @@
+{
+  "students": [
+    {
+      "id": "e34f598855",
+      "name": "Кудисова Настя",
+      "desc": "химия, физика",
+      "group": ""
+    },
+    {
+      "id": "32f1f16ae1",
+      "name": "Харченко Матвей",
+      "desc": "3 кл: русский, литература, математика, окружающий, английский, ЭИ",
+      "group": ""
+    },
+    {
+      "id": "a514a394aa",
+      "name": "Мадхави",
+      "desc": "ПКШ",
+      "group": "ПКШ"
+    },
+    {
+      "id": "b7b4528f12",
+      "name": "Арина",
+      "desc": "ПКШ",
+      "group": "ПКШ"
+    },
+    {
+      "id": "e44b8b1c00",
+      "name": "Вероника",
+      "desc": "ПКШ",
+      "group": "ПКШ"
+    },
+    {
+      "id": "df8596500c",
+      "name": "Балакирев Евгений",
+      "desc": "Книготерапия",
+      "group": "Книготерапия"
+    },
+    {
+      "id": "a1f652a5de",
+      "name": "Змиенко Агата",
+      "desc": "Книготерапия",
+      "group": "Книготерапия"
+    },
+    {
+      "id": "bfd6957828",
+      "name": "Давыдова Лера",
+      "desc": "Книготерапия",
+      "group": "Книготерапия"
+    },
+    {
+      "id": "0e5ec21f8f",
+      "name": "Боброва Мирослава",
+      "desc": "Книготерапия",
+      "group": "Книготерапия"
+    },
+    {
+      "id": "139b17fb47",
+      "name": "Прыгунов Ваня",
+      "desc": "Арт терапия ВТ",
+      "group": "Арт терапия ВТ"
+    },
+    {
+      "id": "152cc44244",
+      "name": "Акимов Егор",
+      "desc": "Арт терапия ВТ",
+      "group": "Арт терапия ВТ"
+    },
+    {
+      "id": "a3284c04d5",
+      "name": "Григорьев Ратмир",
+      "desc": "Арт терапия ВТ",
+      "group": "Арт терапия ВТ"
+    },
+    {
+      "id": "2a32527545",
+      "name": "Малкова Лия",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "ef5fe37104",
+      "name": "Гелястанова Амрита",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "be75bbbe52",
+      "name": "Зобнин Максим",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "5f295a56ef",
+      "name": "Смирнова Тэона",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "3559699a4f",
+      "name": "Суворова Вера",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "d3ab1eee1a",
+      "name": "Пантелеева Софья",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    },
+    {
+      "id": "7a3446d8ca",
+      "name": "Пасичник Ария",
+      "desc": "Арт терапия СР",
+      "group": "Арт терапия СР"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "3d241a6fff",
+      "studentId": "e34f598855",
+      "subject": "физика",
+      "date": "2025-09-06",
+      "time": ""
+    },
+    {
+      "id": "2a2bef8a5e",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-09-08",
+      "time": ""
+    },
+    {
+      "id": "41e2ac63cb",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-09-10",
+      "time": ""
+    },
+    {
+      "id": "aac149370d",
+      "studentId": "e34f598855",
+      "subject": "физика",
+      "date": "2025-09-14",
+      "time": ""
+    },
+    {
+      "id": "5029299162",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-09-17",
+      "time": ""
+    },
+    {
+      "id": "50dd513684",
+      "studentId": "e34f598855",
+      "subject": "физика",
+      "date": "2025-09-20",
+      "time": ""
+    },
+    {
+      "id": "23ac87dffb",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-09-24",
+      "time": ""
+    },
+    {
+      "id": "63f465ac18",
+      "studentId": "e34f598855",
+      "subject": "физика",
+      "date": "2025-09-27",
+      "time": ""
+    },
+    {
+      "id": "0503f2760e",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-10-06",
+      "time": ""
+    },
+    {
+      "id": "878146f978",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-10-15",
+      "time": ""
+    },
+    {
+      "id": "75707bc3f0",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-10-22",
+      "time": ""
+    },
+    {
+      "id": "5e2f23d6fa",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-10-27",
+      "time": ""
+    },
+    {
+      "id": "141b851446",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-11-05",
+      "time": ""
+    },
+    {
+      "id": "9b51551aa0",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-11-12",
+      "time": ""
+    },
+    {
+      "id": "51cd9ba110",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-11-19",
+      "time": ""
+    },
+    {
+      "id": "d5cb76383a",
+      "studentId": "e34f598855",
+      "subject": "химия",
+      "date": "2025-11-26",
+      "time": ""
+    },
+    {
+      "id": "bd6bc27b17",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-11",
+      "time": ""
+    },
+    {
+      "id": "ae6483361d",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-11",
+      "time": ""
+    },
+    {
+      "id": "fde3e4a83d",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-12",
+      "time": ""
+    },
+    {
+      "id": "0f7efe372c",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-15",
+      "time": ""
+    },
+    {
+      "id": "b979820d6e",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-09-15",
+      "time": ""
+    },
+    {
+      "id": "bcb8efcdba",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-09-15",
+      "time": ""
+    },
+    {
+      "id": "1f83ce03dd",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-16",
+      "time": ""
+    },
+    {
+      "id": "cdf4a2bb3a",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-16",
+      "time": ""
+    },
+    {
+      "id": "a828033cdd",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-17",
+      "time": ""
+    },
+    {
+      "id": "f092ae51ba",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-09-17",
+      "time": ""
+    },
+    {
+      "id": "b9f0898efa",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-09-17",
+      "time": ""
+    },
+    {
+      "id": "1ae20bbfdf",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-18",
+      "time": ""
+    },
+    {
+      "id": "512791a36d",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-18",
+      "time": ""
+    },
+    {
+      "id": "acc6e73b21",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-09-19",
+      "time": ""
+    },
+    {
+      "id": "5cc5dfa3f2",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-22",
+      "time": ""
+    },
+    {
+      "id": "b9af9e1871",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-09-22",
+      "time": ""
+    },
+    {
+      "id": "65a1963c69",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-09-22",
+      "time": ""
+    },
+    {
+      "id": "4bfabcb065",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-23",
+      "time": ""
+    },
+    {
+      "id": "c6c20b5605",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-23",
+      "time": ""
+    },
+    {
+      "id": "84f901df7e",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-24",
+      "time": ""
+    },
+    {
+      "id": "bad2acf1dc",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-09-24",
+      "time": ""
+    },
+    {
+      "id": "b5a0364423",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-09-24",
+      "time": ""
+    },
+    {
+      "id": "3f53d74dc9",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-25",
+      "time": ""
+    },
+    {
+      "id": "2b0d8fcfc9",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-25",
+      "time": ""
+    },
+    {
+      "id": "1b5a80f273",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-09-26",
+      "time": ""
+    },
+    {
+      "id": "0355ecfb23",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-09-29",
+      "time": ""
+    },
+    {
+      "id": "19f04086c2",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-09-29",
+      "time": ""
+    },
+    {
+      "id": "3d5acf867a",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-09-29",
+      "time": ""
+    },
+    {
+      "id": "192675bc12",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-09-30",
+      "time": ""
+    },
+    {
+      "id": "5b3dab2ecb",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-09-30",
+      "time": ""
+    },
+    {
+      "id": "30af9fe130",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-01",
+      "time": ""
+    },
+    {
+      "id": "695205e3d9",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-10-01",
+      "time": ""
+    },
+    {
+      "id": "452e5f0654",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-01",
+      "time": ""
+    },
+    {
+      "id": "f1d3593872",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-02",
+      "time": ""
+    },
+    {
+      "id": "0caf751390",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-02",
+      "time": ""
+    },
+    {
+      "id": "d96d851aad",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-10-03",
+      "time": ""
+    },
+    {
+      "id": "ad278fb35e",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-10-06",
+      "time": ""
+    },
+    {
+      "id": "2377c5b6b7",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-06",
+      "time": ""
+    },
+    {
+      "id": "a5b3b52b4e",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-08",
+      "time": ""
+    },
+    {
+      "id": "d7214dd5f6",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-10-08",
+      "time": ""
+    },
+    {
+      "id": "ee6372a94d",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-08",
+      "time": ""
+    },
+    {
+      "id": "20fecfc6df",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-09",
+      "time": ""
+    },
+    {
+      "id": "f8983e4544",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-09",
+      "time": ""
+    },
+    {
+      "id": "1d0e4fe85a",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-10-10",
+      "time": ""
+    },
+    {
+      "id": "1fb0890d10",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-10",
+      "time": ""
+    },
+    {
+      "id": "55d8d7c429",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-10",
+      "time": ""
+    },
+    {
+      "id": "204d2d6356",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-13",
+      "time": ""
+    },
+    {
+      "id": "d64487df46",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-10-13",
+      "time": ""
+    },
+    {
+      "id": "4dcd5b18f1",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-13",
+      "time": ""
+    },
+    {
+      "id": "3a2de91a9f",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-15",
+      "time": ""
+    },
+    {
+      "id": "e5212722ea",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-10-15",
+      "time": ""
+    },
+    {
+      "id": "f60ca30143",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-15",
+      "time": ""
+    },
+    {
+      "id": "960a3469a2",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-16",
+      "time": ""
+    },
+    {
+      "id": "9f764f0ae2",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-16",
+      "time": ""
+    },
+    {
+      "id": "008cc12025",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-10-17",
+      "time": ""
+    },
+    {
+      "id": "229f781a5f",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-17",
+      "time": ""
+    },
+    {
+      "id": "5ca4a0df00",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-17",
+      "time": ""
+    },
+    {
+      "id": "6ecfb01a16",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-20",
+      "time": ""
+    },
+    {
+      "id": "1dacca4292",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-10-20",
+      "time": ""
+    },
+    {
+      "id": "848a7628fd",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-20",
+      "time": ""
+    },
+    {
+      "id": "e7314f1324",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-22",
+      "time": ""
+    },
+    {
+      "id": "d15640d552",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-10-22",
+      "time": ""
+    },
+    {
+      "id": "e35236f007",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-22",
+      "time": ""
+    },
+    {
+      "id": "d334ccdbb8",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-23",
+      "time": ""
+    },
+    {
+      "id": "8994a63a4d",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-23",
+      "time": ""
+    },
+    {
+      "id": "c97e3eb7d2",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-10-24",
+      "time": ""
+    },
+    {
+      "id": "6b727b3bc5",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-24",
+      "time": ""
+    },
+    {
+      "id": "db71686b92",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-24",
+      "time": ""
+    },
+    {
+      "id": "008ec2a65a",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-27",
+      "time": ""
+    },
+    {
+      "id": "78cbb4771f",
+      "studentId": "32f1f16ae1",
+      "subject": "окружающий",
+      "date": "2025-10-27",
+      "time": ""
+    },
+    {
+      "id": "f1b3717e7f",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-28",
+      "time": ""
+    },
+    {
+      "id": "da200c7ab0",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-10-29",
+      "time": ""
+    },
+    {
+      "id": "245feb2d17",
+      "studentId": "32f1f16ae1",
+      "subject": "эмоц интеллект",
+      "date": "2025-10-29",
+      "time": ""
+    },
+    {
+      "id": "f84f349893",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-10-29",
+      "time": ""
+    },
+    {
+      "id": "82341ec910",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-30",
+      "time": ""
+    },
+    {
+      "id": "51312219e7",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-30",
+      "time": ""
+    },
+    {
+      "id": "b3ae7c0807",
+      "studentId": "32f1f16ae1",
+      "subject": "матесатика",
+      "date": "2025-10-31",
+      "time": ""
+    },
+    {
+      "id": "00f9ae8779",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-10-31",
+      "time": ""
+    },
+    {
+      "id": "e9bbf64488",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-10-31",
+      "time": ""
+    },
+    {
+      "id": "e9149a028c",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-05",
+      "time": ""
+    },
+    {
+      "id": "defbca1183",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-11-05",
+      "time": ""
+    },
+    {
+      "id": "27ec2ec2ed",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-05",
+      "time": ""
+    },
+    {
+      "id": "c24a40ddec",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-06",
+      "time": ""
+    },
+    {
+      "id": "b20144e3ae",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-06",
+      "time": ""
+    },
+    {
+      "id": "4b6ee03369",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-08",
+      "time": ""
+    },
+    {
+      "id": "8641976718",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-08",
+      "time": ""
+    },
+    {
+      "id": "fafc431860",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-08",
+      "time": ""
+    },
+    {
+      "id": "ffcec7313f",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-10",
+      "time": ""
+    },
+    {
+      "id": "82f070081f",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-10",
+      "time": ""
+    },
+    {
+      "id": "b1b654b81c",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-10",
+      "time": ""
+    },
+    {
+      "id": "5d413c7a7b",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-11",
+      "time": ""
+    },
+    {
+      "id": "1dc70dd606",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-12",
+      "time": ""
+    },
+    {
+      "id": "fe890c1f02",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-11-12",
+      "time": ""
+    },
+    {
+      "id": "88ae93ae6c",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-12",
+      "time": ""
+    },
+    {
+      "id": "84b9c4b91a",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-13",
+      "time": ""
+    },
+    {
+      "id": "f5735b57ed",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-13",
+      "time": ""
+    },
+    {
+      "id": "a40ec3b71b",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-13",
+      "time": ""
+    },
+    {
+      "id": "4840c4486f",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-14",
+      "time": ""
+    },
+    {
+      "id": "95cc353a26",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-14",
+      "time": ""
+    },
+    {
+      "id": "4fad6a3502",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-14",
+      "time": ""
+    },
+    {
+      "id": "d257a42d3b",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-24",
+      "time": ""
+    },
+    {
+      "id": "b66bac8166",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-24",
+      "time": ""
+    },
+    {
+      "id": "a9928f7a18",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-24",
+      "time": ""
+    },
+    {
+      "id": "7a72f785a2",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-25",
+      "time": ""
+    },
+    {
+      "id": "de00d64091",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-26",
+      "time": ""
+    },
+    {
+      "id": "ee28d9c0fb",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-11-26",
+      "time": ""
+    },
+    {
+      "id": "aa041d96b9",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-26",
+      "time": ""
+    },
+    {
+      "id": "32016bc1b9",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-27",
+      "time": ""
+    },
+    {
+      "id": "0c70f1b855",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-27",
+      "time": ""
+    },
+    {
+      "id": "d0fac161f9",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-11-27",
+      "time": ""
+    },
+    {
+      "id": "b3f9f7e31b",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-11-28",
+      "time": ""
+    },
+    {
+      "id": "ac6cf17eb8",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-11-28",
+      "time": ""
+    },
+    {
+      "id": "9ac52e11be",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-11-28",
+      "time": ""
+    },
+    {
+      "id": "33f1e54fed",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-01",
+      "time": ""
+    },
+    {
+      "id": "178fe281b5",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-01",
+      "time": ""
+    },
+    {
+      "id": "ae7168a8ac",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-01",
+      "time": ""
+    },
+    {
+      "id": "b37b0ff155",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-02",
+      "time": ""
+    },
+    {
+      "id": "5876b8b8bc",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-03",
+      "time": ""
+    },
+    {
+      "id": "ff80af95ad",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-12-03",
+      "time": ""
+    },
+    {
+      "id": "bc189d17c0",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-03",
+      "time": ""
+    },
+    {
+      "id": "7a3c3ecd24",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-04",
+      "time": ""
+    },
+    {
+      "id": "c0e4be8ce8",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-04",
+      "time": ""
+    },
+    {
+      "id": "61188aa130",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-04",
+      "time": ""
+    },
+    {
+      "id": "d412b97303",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-05",
+      "time": ""
+    },
+    {
+      "id": "652bdd6610",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-05",
+      "time": ""
+    },
+    {
+      "id": "aeebab2a63",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-05",
+      "time": ""
+    },
+    {
+      "id": "3336948c95",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-08",
+      "time": ""
+    },
+    {
+      "id": "bbb920fee5",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-08",
+      "time": ""
+    },
+    {
+      "id": "a6d8df5a96",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-08",
+      "time": ""
+    },
+    {
+      "id": "eacffc3dfd",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-09",
+      "time": ""
+    },
+    {
+      "id": "9ffcbaa84b",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-10",
+      "time": ""
+    },
+    {
+      "id": "08eef2d90e",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-12-10",
+      "time": ""
+    },
+    {
+      "id": "406ec3feed",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-10",
+      "time": ""
+    },
+    {
+      "id": "899cc3ab6c",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-11",
+      "time": ""
+    },
+    {
+      "id": "858ec5777f",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-11",
+      "time": ""
+    },
+    {
+      "id": "c5dfd1da03",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-11",
+      "time": ""
+    },
+    {
+      "id": "dee9bf6e33",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-12",
+      "time": ""
+    },
+    {
+      "id": "27090e92a4",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-12",
+      "time": ""
+    },
+    {
+      "id": "4176e12b5d",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-12",
+      "time": ""
+    },
+    {
+      "id": "b380e11e48",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-15",
+      "time": ""
+    },
+    {
+      "id": "8e47996f2e",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-15",
+      "time": ""
+    },
+    {
+      "id": "ca745e6eb1",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-15",
+      "time": ""
+    },
+    {
+      "id": "ab94df3011",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-16",
+      "time": ""
+    },
+    {
+      "id": "c8c92ad22d",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-17",
+      "time": ""
+    },
+    {
+      "id": "a5d78b8efd",
+      "studentId": "32f1f16ae1",
+      "subject": "ЭИ",
+      "date": "2025-12-17",
+      "time": ""
+    },
+    {
+      "id": "4837ca083a",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-17",
+      "time": ""
+    },
+    {
+      "id": "66b9647371",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-18",
+      "time": ""
+    },
+    {
+      "id": "fd7226f717",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-18",
+      "time": ""
+    },
+    {
+      "id": "7a65401f31",
+      "studentId": "32f1f16ae1",
+      "subject": "английский",
+      "date": "2025-12-18",
+      "time": ""
+    },
+    {
+      "id": "dc1ca0e63c",
+      "studentId": "32f1f16ae1",
+      "subject": "математика",
+      "date": "2025-12-19",
+      "time": ""
+    },
+    {
+      "id": "9466ec1c64",
+      "studentId": "32f1f16ae1",
+      "subject": "русский",
+      "date": "2025-12-19",
+      "time": ""
+    },
+    {
+      "id": "0f8e6c34cc",
+      "studentId": "32f1f16ae1",
+      "subject": "литература",
+      "date": "2025-12-19",
+      "time": ""
+    },
+    {
+      "id": "7e74f66598",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-13",
+      "time": ""
+    },
+    {
+      "id": "dcbe5cab3c",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-15",
+      "time": ""
+    },
+    {
+      "id": "44069b4994",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-20",
+      "time": ""
+    },
+    {
+      "id": "e0ec838f0e",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-22",
+      "time": ""
+    },
+    {
+      "id": "7c868e7a37",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-27",
+      "time": ""
+    },
+    {
+      "id": "6fb8b94c3b",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-01-29",
+      "time": ""
+    },
+    {
+      "id": "86311456c3",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "ab579198a5",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-05",
+      "time": ""
+    },
+    {
+      "id": "7a956540eb",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-06",
+      "time": ""
+    },
+    {
+      "id": "d5dadf6100",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "c0dca46f97",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-12",
+      "time": ""
+    },
+    {
+      "id": "9c46a12155",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "2637314aab",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-19",
+      "time": ""
+    },
+    {
+      "id": "bfa8caa24a",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-24",
+      "time": ""
+    },
+    {
+      "id": "10f4783bfc",
+      "studentId": "a514a394aa",
+      "subject": "ПКШ",
+      "date": "2026-02-26",
+      "time": ""
+    },
+    {
+      "id": "a51631fc79",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-13",
+      "time": ""
+    },
+    {
+      "id": "5413fdf26a",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-15",
+      "time": ""
+    },
+    {
+      "id": "1f15f38aab",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-20",
+      "time": ""
+    },
+    {
+      "id": "d8d937b53c",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-22",
+      "time": ""
+    },
+    {
+      "id": "68ddaf29c8",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-27",
+      "time": ""
+    },
+    {
+      "id": "68c87e356f",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-01-29",
+      "time": ""
+    },
+    {
+      "id": "8a7f678c4b",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "c744760e11",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-05",
+      "time": ""
+    },
+    {
+      "id": "d4ad2f0303",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-06",
+      "time": ""
+    },
+    {
+      "id": "fdbc4c56c7",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "b5a0122b81",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-12",
+      "time": ""
+    },
+    {
+      "id": "76f5d59001",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "15d4e83ca0",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-19",
+      "time": ""
+    },
+    {
+      "id": "d044d75d2f",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-24",
+      "time": ""
+    },
+    {
+      "id": "ccf2255cc3",
+      "studentId": "b7b4528f12",
+      "subject": "ПКШ",
+      "date": "2026-02-26",
+      "time": ""
+    },
+    {
+      "id": "96c6280b85",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-13",
+      "time": ""
+    },
+    {
+      "id": "3b327c2100",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-15",
+      "time": ""
+    },
+    {
+      "id": "e0f33b1c7b",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-20",
+      "time": ""
+    },
+    {
+      "id": "d5d0152ac3",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-22",
+      "time": ""
+    },
+    {
+      "id": "e1442719c0",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-27",
+      "time": ""
+    },
+    {
+      "id": "8d9e9cb561",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-01-29",
+      "time": ""
+    },
+    {
+      "id": "c45227cd6d",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "5c2ea17ade",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-05",
+      "time": ""
+    },
+    {
+      "id": "ba21ddf3d0",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-06",
+      "time": ""
+    },
+    {
+      "id": "bd640304d5",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "e2e0dd99b7",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-12",
+      "time": ""
+    },
+    {
+      "id": "ae980a9b84",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "b71eab8a1c",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-19",
+      "time": ""
+    },
+    {
+      "id": "f0e424bb95",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-24",
+      "time": ""
+    },
+    {
+      "id": "322d0e5f26",
+      "studentId": "e44b8b1c00",
+      "subject": "ПКШ",
+      "date": "2026-02-26",
+      "time": ""
+    },
+    {
+      "id": "3a4ffe070b",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-01-14",
+      "time": ""
+    },
+    {
+      "id": "a6d4650d4b",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-01-21",
+      "time": ""
+    },
+    {
+      "id": "31b16abd6c",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-01-28",
+      "time": ""
+    },
+    {
+      "id": "839b0b2ead",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "005be9b052",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "7c0cb7e685",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "8722781b9e",
+      "studentId": "df8596500c",
+      "subject": "Книготерапия",
+      "date": "2026-02-25",
+      "time": ""
+    },
+    {
+      "id": "92c1a27809",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-01-14",
+      "time": ""
+    },
+    {
+      "id": "b1bfa6992a",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-01-21",
+      "time": ""
+    },
+    {
+      "id": "14b44d33a6",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-01-28",
+      "time": ""
+    },
+    {
+      "id": "109f01c116",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "583053e739",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "c7093483f7",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "2f1b2b9a71",
+      "studentId": "a1f652a5de",
+      "subject": "Книготерапия",
+      "date": "2026-02-25",
+      "time": ""
+    },
+    {
+      "id": "5cfabf4a98",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-01-14",
+      "time": ""
+    },
+    {
+      "id": "e69bbef9e9",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-01-21",
+      "time": ""
+    },
+    {
+      "id": "db11f2da5b",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-01-28",
+      "time": ""
+    },
+    {
+      "id": "59484d6fdf",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "511a71ec2e",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "dfe7c9e608",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "e8be180bdc",
+      "studentId": "bfd6957828",
+      "subject": "Книготерапия",
+      "date": "2026-02-25",
+      "time": ""
+    },
+    {
+      "id": "751633a5d2",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-01-14",
+      "time": ""
+    },
+    {
+      "id": "78019dc5f0",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-01-21",
+      "time": ""
+    },
+    {
+      "id": "3cfdfd79d5",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-01-28",
+      "time": ""
+    },
+    {
+      "id": "6f273f67d0",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "705cfc23f7",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "fd23ce6d78",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "9d4d040325",
+      "studentId": "0e5ec21f8f",
+      "subject": "Книготерапия",
+      "date": "2026-02-25",
+      "time": ""
+    },
+    {
+      "id": "39fedc00db",
+      "studentId": "139b17fb47",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "2186ea347e",
+      "studentId": "139b17fb47",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "a0aa682e8d",
+      "studentId": "139b17fb47",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "1fada9f132",
+      "studentId": "152cc44244",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "8c2db293bc",
+      "studentId": "152cc44244",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "c83282cb0f",
+      "studentId": "152cc44244",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "7a79bb74ef",
+      "studentId": "a3284c04d5",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-03",
+      "time": ""
+    },
+    {
+      "id": "f9bb00973f",
+      "studentId": "a3284c04d5",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-10",
+      "time": ""
+    },
+    {
+      "id": "8b92bf0616",
+      "studentId": "a3284c04d5",
+      "subject": "Арт терапия ВТ",
+      "date": "2026-02-17",
+      "time": ""
+    },
+    {
+      "id": "38c8782787",
+      "studentId": "2a32527545",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "e73789cc31",
+      "studentId": "2a32527545",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "611141f178",
+      "studentId": "2a32527545",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "1e10ff11c4",
+      "studentId": "ef5fe37104",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "5465b215a6",
+      "studentId": "ef5fe37104",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "c33574029b",
+      "studentId": "ef5fe37104",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "2e9dc54b1d",
+      "studentId": "be75bbbe52",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "374dd0d5bc",
+      "studentId": "be75bbbe52",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "bab6d0be75",
+      "studentId": "be75bbbe52",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "977a568933",
+      "studentId": "5f295a56ef",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "cf1ad76df4",
+      "studentId": "5f295a56ef",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "452ca582b1",
+      "studentId": "5f295a56ef",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "c4af94f085",
+      "studentId": "3559699a4f",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "6c85561921",
+      "studentId": "3559699a4f",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "01174f57e7",
+      "studentId": "3559699a4f",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "88c5fac748",
+      "studentId": "d3ab1eee1a",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "256414f71b",
+      "studentId": "d3ab1eee1a",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "b447429d80",
+      "studentId": "d3ab1eee1a",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    },
+    {
+      "id": "cd6be106b0",
+      "studentId": "7a3446d8ca",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-04",
+      "time": ""
+    },
+    {
+      "id": "d86e5cd38f",
+      "studentId": "7a3446d8ca",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-11",
+      "time": ""
+    },
+    {
+      "id": "28d7f40975",
+      "studentId": "7a3446d8ca",
+      "subject": "Арт терапия СР",
+      "date": "2026-02-18",
+      "time": ""
+    }
+  ],
+  "attendance": {
+    "2025-09-06_e34f598855_физика": true,
+    "2025-09-08_e34f598855_химия": true,
+    "2025-09-10_e34f598855_химия": true,
+    "2025-09-14_e34f598855_физика": true,
+    "2025-09-17_e34f598855_химия": true,
+    "2025-09-20_e34f598855_физика": true,
+    "2025-09-24_e34f598855_химия": true,
+    "2025-09-27_e34f598855_физика": true,
+    "2025-10-06_e34f598855_химия": true,
+    "2025-10-15_e34f598855_химия": true,
+    "2025-10-22_e34f598855_химия": true,
+    "2025-10-27_e34f598855_химия": true,
+    "2025-09-11_32f1f16ae1_русский": true,
+    "2025-09-11_32f1f16ae1_литература": true,
+    "2025-09-12_32f1f16ae1_математика": true,
+    "2025-09-15_32f1f16ae1_математика": true,
+    "2025-09-15_32f1f16ae1_окружающий": true,
+    "2025-09-15_32f1f16ae1_английский": true,
+    "2025-09-16_32f1f16ae1_русский": true,
+    "2025-09-16_32f1f16ae1_литература": true,
+    "2025-09-17_32f1f16ae1_математика": true,
+    "2025-09-17_32f1f16ae1_эмоц интеллект": true,
+    "2025-09-17_32f1f16ae1_английский": true,
+    "2025-09-18_32f1f16ae1_русский": true,
+    "2025-09-18_32f1f16ae1_литература": true,
+    "2025-09-19_32f1f16ae1_матесатика": true,
+    "2025-09-22_32f1f16ae1_математика": true,
+    "2025-09-22_32f1f16ae1_окружающий": true,
+    "2025-09-22_32f1f16ae1_английский": true,
+    "2025-09-23_32f1f16ae1_русский": true,
+    "2025-09-23_32f1f16ae1_литература": true,
+    "2025-09-24_32f1f16ae1_математика": true,
+    "2025-09-24_32f1f16ae1_эмоц интеллект": true,
+    "2025-09-24_32f1f16ae1_английский": true,
+    "2025-09-25_32f1f16ae1_русский": true,
+    "2025-09-25_32f1f16ae1_литература": true,
+    "2025-09-26_32f1f16ae1_матесатика": true,
+    "2025-09-29_32f1f16ae1_математика": true,
+    "2025-09-29_32f1f16ae1_окружающий": true,
+    "2025-09-29_32f1f16ae1_английский": true,
+    "2025-09-30_32f1f16ae1_русский": true,
+    "2025-09-30_32f1f16ae1_литература": true,
+    "2025-10-01_32f1f16ae1_математика": true,
+    "2025-10-01_32f1f16ae1_эмоц интеллект": true,
+    "2025-10-01_32f1f16ae1_английский": true,
+    "2025-10-02_32f1f16ae1_русский": true,
+    "2025-10-02_32f1f16ae1_литература": true,
+    "2025-10-03_32f1f16ae1_матесатика": true,
+    "2025-10-06_32f1f16ae1_окружающий": true,
+    "2025-10-06_32f1f16ae1_английский": true,
+    "2025-10-08_32f1f16ae1_математика": true,
+    "2025-10-08_32f1f16ae1_эмоц интеллект": true,
+    "2025-10-08_32f1f16ae1_английский": true,
+    "2025-10-09_32f1f16ae1_русский": true,
+    "2025-10-09_32f1f16ae1_литература": true,
+    "2025-10-10_32f1f16ae1_матесатика": true,
+    "2025-10-10_32f1f16ae1_русский": true,
+    "2025-10-10_32f1f16ae1_литература": true,
+    "2025-10-13_32f1f16ae1_математика": true,
+    "2025-10-13_32f1f16ae1_окружающий": true,
+    "2025-10-13_32f1f16ae1_английский": true,
+    "2025-10-15_32f1f16ae1_математика": true,
+    "2025-10-15_32f1f16ae1_эмоц интеллект": true,
+    "2025-10-15_32f1f16ae1_английский": true,
+    "2025-10-16_32f1f16ae1_русский": true,
+    "2025-10-16_32f1f16ae1_литература": true,
+    "2025-10-17_32f1f16ae1_матесатика": true,
+    "2025-10-17_32f1f16ae1_русский": true,
+    "2025-10-17_32f1f16ae1_литература": true,
+    "2025-10-20_32f1f16ae1_математика": true,
+    "2025-10-20_32f1f16ae1_окружающий": true,
+    "2025-10-20_32f1f16ae1_английский": true,
+    "2025-10-22_32f1f16ae1_математика": true,
+    "2025-10-22_32f1f16ae1_эмоц интеллект": true,
+    "2025-10-22_32f1f16ae1_английский": true,
+    "2025-10-23_32f1f16ae1_русский": true,
+    "2025-10-23_32f1f16ae1_литература": true,
+    "2025-10-24_32f1f16ae1_матесатика": true,
+    "2025-10-24_32f1f16ae1_русский": true,
+    "2025-10-24_32f1f16ae1_литература": true,
+    "2025-10-27_32f1f16ae1_математика": true,
+    "2025-10-27_32f1f16ae1_окружающий": true,
+    "2025-10-28_32f1f16ae1_английский": true,
+    "2025-10-29_32f1f16ae1_математика": true,
+    "2025-10-29_32f1f16ae1_эмоц интеллект": true,
+    "2025-10-29_32f1f16ae1_английский": true,
+    "2025-10-30_32f1f16ae1_русский": true,
+    "2025-10-30_32f1f16ae1_литература": true,
+    "2025-10-31_32f1f16ae1_матесатика": true,
+    "2025-10-31_32f1f16ae1_русский": true,
+    "2025-10-31_32f1f16ae1_литература": true,
+    "2025-11-05_32f1f16ae1_математика": true,
+    "2025-11-05_32f1f16ae1_ЭИ": true,
+    "2025-11-05_32f1f16ae1_английский": true,
+    "2025-11-06_32f1f16ae1_русский": true,
+    "2025-11-06_32f1f16ae1_литература": true,
+    "2025-11-08_32f1f16ae1_математика": true,
+    "2025-11-08_32f1f16ae1_русский": true,
+    "2025-11-08_32f1f16ae1_литература": true,
+    "2025-11-10_32f1f16ae1_математика": true,
+    "2025-11-10_32f1f16ae1_русский": true,
+    "2025-11-10_32f1f16ae1_английский": true,
+    "2025-11-11_32f1f16ae1_английский": false,
+    "2025-11-12_32f1f16ae1_математика": true,
+    "2025-11-12_32f1f16ae1_ЭИ": true,
+    "2025-11-12_32f1f16ae1_английский": true,
+    "2025-11-13_32f1f16ae1_русский": true,
+    "2025-11-13_32f1f16ae1_литература": true,
+    "2025-11-13_32f1f16ae1_английский": true,
+    "2025-11-14_32f1f16ae1_математика": true,
+    "2025-11-14_32f1f16ae1_русский": true,
+    "2025-11-14_32f1f16ae1_литература": true,
+    "2025-11-24_32f1f16ae1_математика": true,
+    "2025-11-24_32f1f16ae1_русский": true,
+    "2025-11-24_32f1f16ae1_английский": true,
+    "2025-11-25_32f1f16ae1_английский": true,
+    "2026-01-13_a514a394aa_ПКШ": true,
+    "2026-01-15_a514a394aa_ПКШ": true,
+    "2026-01-20_a514a394aa_ПКШ": true,
+    "2026-01-22_a514a394aa_ПКШ": true,
+    "2026-01-27_a514a394aa_ПКШ": true,
+    "2026-01-29_a514a394aa_ПКШ": true,
+    "2026-02-03_a514a394aa_ПКШ": true,
+    "2026-02-05_a514a394aa_ПКШ": true,
+    "2026-02-06_a514a394aa_ПКШ": true,
+    "2026-02-10_a514a394aa_ПКШ": true,
+    "2026-02-12_a514a394aa_ПКШ": false,
+    "2026-02-17_a514a394aa_ПКШ": false,
+    "2026-02-19_a514a394aa_ПКШ": false,
+    "2026-02-24_a514a394aa_ПКШ": false,
+    "2026-02-26_a514a394aa_ПКШ": false,
+    "2026-01-13_b7b4528f12_ПКШ": true,
+    "2026-01-15_b7b4528f12_ПКШ": true,
+    "2026-01-20_b7b4528f12_ПКШ": true,
+    "2026-01-22_b7b4528f12_ПКШ": true,
+    "2026-01-27_b7b4528f12_ПКШ": true,
+    "2026-01-29_b7b4528f12_ПКШ": true,
+    "2026-02-03_b7b4528f12_ПКШ": true,
+    "2026-02-05_b7b4528f12_ПКШ": true,
+    "2026-02-06_b7b4528f12_ПКШ": true,
+    "2026-02-10_b7b4528f12_ПКШ": true,
+    "2026-02-12_b7b4528f12_ПКШ": true,
+    "2026-02-17_b7b4528f12_ПКШ": false,
+    "2026-02-19_b7b4528f12_ПКШ": false,
+    "2026-02-24_b7b4528f12_ПКШ": false,
+    "2026-02-26_b7b4528f12_ПКШ": false,
+    "2026-01-13_e44b8b1c00_ПКШ": false,
+    "2026-01-15_e44b8b1c00_ПКШ": false,
+    "2026-01-20_e44b8b1c00_ПКШ": false,
+    "2026-01-22_e44b8b1c00_ПКШ": false,
+    "2026-01-27_e44b8b1c00_ПКШ": false,
+    "2026-01-29_e44b8b1c00_ПКШ": false,
+    "2026-02-03_e44b8b1c00_ПКШ": false,
+    "2026-02-05_e44b8b1c00_ПКШ": false,
+    "2026-02-06_e44b8b1c00_ПКШ": false,
+    "2026-02-10_e44b8b1c00_ПКШ": true,
+    "2026-02-12_e44b8b1c00_ПКШ": true,
+    "2026-02-17_e44b8b1c00_ПКШ": false,
+    "2026-02-19_e44b8b1c00_ПКШ": false,
+    "2026-02-24_e44b8b1c00_ПКШ": false,
+    "2026-02-26_e44b8b1c00_ПКШ": false,
+    "2026-01-14_df8596500c_Книготерапия": true,
+    "2026-01-21_df8596500c_Книготерапия": true,
+    "2026-01-28_df8596500c_Книготерапия": true,
+    "2026-02-04_df8596500c_Книготерапия": true,
+    "2026-02-11_df8596500c_Книготерапия": true,
+    "2026-02-18_df8596500c_Книготерапия": false,
+    "2026-02-25_df8596500c_Книготерапия": false,
+    "2026-01-14_a1f652a5de_Книготерапия": true,
+    "2026-01-21_a1f652a5de_Книготерапия": true,
+    "2026-01-28_a1f652a5de_Книготерапия": true,
+    "2026-02-04_a1f652a5de_Книготерапия": true,
+    "2026-02-11_a1f652a5de_Книготерапия": true,
+    "2026-02-18_a1f652a5de_Книготерапия": false,
+    "2026-02-25_a1f652a5de_Книготерапия": false,
+    "2026-01-14_bfd6957828_Книготерапия": false,
+    "2026-01-21_bfd6957828_Книготерапия": false,
+    "2026-01-28_bfd6957828_Книготерапия": false,
+    "2026-02-04_bfd6957828_Книготерапия": true,
+    "2026-02-11_bfd6957828_Книготерапия": true,
+    "2026-02-18_bfd6957828_Книготерапия": false,
+    "2026-02-25_bfd6957828_Книготерапия": false,
+    "2026-01-14_0e5ec21f8f_Книготерапия": false,
+    "2026-01-21_0e5ec21f8f_Книготерапия": false,
+    "2026-01-28_0e5ec21f8f_Книготерапия": false,
+    "2026-02-04_0e5ec21f8f_Книготерапия": true,
+    "2026-02-11_0e5ec21f8f_Книготерапия": false,
+    "2026-02-18_0e5ec21f8f_Книготерапия": false,
+    "2026-02-25_0e5ec21f8f_Книготерапия": false,
+    "2026-02-03_139b17fb47_Арт терапия ВТ": true,
+    "2026-02-10_139b17fb47_Арт терапия ВТ": false,
+    "2026-02-17_139b17fb47_Арт терапия ВТ": false,
+    "2026-02-03_152cc44244_Арт терапия ВТ": true,
+    "2026-02-10_152cc44244_Арт терапия ВТ": true,
+    "2026-02-17_152cc44244_Арт терапия ВТ": false,
+    "2026-02-03_a3284c04d5_Арт терапия ВТ": true,
+    "2026-02-10_a3284c04d5_Арт терапия ВТ": false,
+    "2026-02-17_a3284c04d5_Арт терапия ВТ": false,
+    "2026-02-04_2a32527545_Арт терапия СР": true,
+    "2026-02-11_2a32527545_Арт терапия СР": false,
+    "2026-02-18_2a32527545_Арт терапия СР": false,
+    "2026-02-04_ef5fe37104_Арт терапия СР": false,
+    "2026-02-11_ef5fe37104_Арт терапия СР": false,
+    "2026-02-18_ef5fe37104_Арт терапия СР": false,
+    "2026-02-04_be75bbbe52_Арт терапия СР": true,
+    "2026-02-11_be75bbbe52_Арт терапия СР": true,
+    "2026-02-18_be75bbbe52_Арт терапия СР": false,
+    "2026-02-04_5f295a56ef_Арт терапия СР": true,
+    "2026-02-11_5f295a56ef_Арт терапия СР": true,
+    "2026-02-18_5f295a56ef_Арт терапия СР": false,
+    "2026-02-04_3559699a4f_Арт терапия СР": true,
+    "2026-02-11_3559699a4f_Арт терапия СР": true,
+    "2026-02-18_3559699a4f_Арт терапия СР": false,
+    "2026-02-04_d3ab1eee1a_Арт терапия СР": true,
+    "2026-02-11_d3ab1eee1a_Арт терапия СР": true,
+    "2026-02-18_d3ab1eee1a_Арт терапия СР": false,
+    "2026-02-04_7a3446d8ca_Арт терапия СР": true,
+    "2026-02-11_7a3446d8ca_Арт терапия СР": false,
+    "2026-02-18_7a3446d8ca_Арт терапия СР": false
+  }
+}
