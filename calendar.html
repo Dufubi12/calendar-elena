@@ -95,6 +95,20 @@
   .section-title{font-size:17px;font-weight:600;margin-bottom:12px}
   .empty{text-align:center;padding:40px;color:var(--text-light);font-size:14px}
 
+  /* Statistics */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:20px}
+  .stat-card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .stat-name{font-size:15px;font-weight:600;margin-bottom:8px}
+  .stat-group{font-size:12px;color:var(--gray);margin-bottom:12px}
+  .stat-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px}
+  .stat-label{color:var(--gray)}
+  .stat-value{font-weight:600}
+  .stat-value.good{color:var(--success)}
+  .stat-value.bad{color:var(--danger)}
+  .progress-bar{height:8px;background:var(--gray-light);border-radius:4px;overflow:hidden;margin:8px 0}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--success),var(--primary));transition:width .3s}
+  .percent-big{font-size:28px;font-weight:700;color:var(--primary);margin:8px 0}
+
   @media(max-width:768px){
     .header{padding:14px}
     .header h1{font-size:17px}
@@ -113,6 +127,7 @@
     <button class="tab" onclick="showView('students',this)">Ученики</button>
     <button class="tab" onclick="showView('schedule',this)">Расписание</button>
     <button class="tab" onclick="showView('attendance',this)">Посещаемость</button>
+    <button class="tab" onclick="showView('stats',this)">Статистика</button>
   </div>
 </div>
 
@@ -138,9 +153,12 @@
 
   <!-- ========== SCHEDULE ========== -->
   <div id="v-schedule" class="hidden">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
       <div class="section-title">Расписание занятий</div>
-      <button class="btn btn-primary" onclick="openAddLesson()">+ Добавить занятие</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="openAddLesson()">+ Добавить занятие</button>
+        <button class="btn" onclick="openRecurring()">🔁 По расписанию</button>
+      </div>
     </div>
     <div id="schedule-list"></div>
   </div>
@@ -149,6 +167,12 @@
   <div id="v-attendance" class="hidden">
     <div class="section-title">Посещаемость</div>
     <div id="att-content"></div>
+  </div>
+
+  <!-- ========== STATISTICS ========== -->
+  <div id="v-stats" class="hidden">
+    <div class="section-title">Статистика посещаемости</div>
+    <div id="stats-content"></div>
   </div>
 </div>
 
@@ -185,6 +209,34 @@
     <div class="form-actions">
       <button class="btn" onclick="closeAll()">Отмена</button>
       <button class="btn btn-primary" onclick="saveLesson()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Recurring Lessons Modal ===== -->
+<div class="overlay" id="m-recurring" onclick="if(event.target===this)closeAll()">
+  <div class="modal">
+    <h3><span>Создать занятия по расписанию</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <div class="form-row"><label>Ученик</label><select id="f-rstudent"></select></div>
+    <div class="form-row"><label>Предмет</label><input id="f-rsubject" placeholder="математика"></div>
+    <div class="form-row"><label>Время (необязательно)</label><input id="f-rtime" type="time"></div>
+    <div class="form-row">
+      <label>Дни недели</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-1" value="1"><span>Пн</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-2" value="2"><span>Вт</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-3" value="3"><span>Ср</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-4" value="4"><span>Чт</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-5" value="5"><span>Пт</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-6" value="6"><span>Сб</span></label>
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" id="day-0" value="0"><span>Вс</span></label>
+      </div>
+    </div>
+    <div class="form-row"><label>Начало периода</label><input id="f-rstart" type="date"></div>
+    <div class="form-row"><label>Конец периода</label><input id="f-rend" type="date"></div>
+    <div class="form-actions">
+      <button class="btn" onclick="closeAll()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveRecurring()">Создать</button>
     </div>
   </div>
 </div>
@@ -236,16 +288,17 @@ async function saveData(){
   render();
 })();
 
-function render(){renderCal();renderStudents();renderSchedule();renderAtt()}
+function render(){renderCal();renderStudents();renderSchedule();renderAtt();renderStats()}
 
 // ===== VIEWS =====
 function showView(v,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  ['calendar','students','schedule','attendance'].forEach(id=>{
+  ['calendar','students','schedule','attendance','stats'].forEach(id=>{
     document.getElementById('v-'+id).classList.toggle('hidden',id!==v);
   });
   if(v==='attendance')renderAtt();
+  if(v==='stats')renderStats();
 }
 
 function closeAll(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'))}
@@ -463,6 +516,53 @@ async function delLesson(id){
   await saveData();render();
 }
 
+// ===== RECURRING LESSONS =====
+function openRecurring(){
+  if(!DATA.students.length){alert('Сначала добавьте ученика');return}
+  const sel=document.getElementById('f-rstudent');
+  sel.innerHTML=DATA.students.map(s=>'<option value="'+s.id+'">'+s.name+'</option>').join('');
+  document.getElementById('f-rsubject').value='';
+  document.getElementById('f-rtime').value='';
+  document.getElementById('f-rstart').value='';
+  document.getElementById('f-rend').value='';
+  [0,1,2,3,4,5,6].forEach(d=>document.getElementById('day-'+d).checked=false);
+  document.getElementById('m-recurring').classList.add('open');
+}
+
+async function saveRecurring(){
+  const studentId=document.getElementById('f-rstudent').value;
+  const subject=document.getElementById('f-rsubject').value.trim();
+  const time=document.getElementById('f-rtime').value;
+  const start=document.getElementById('f-rstart').value;
+  const end=document.getElementById('f-rend').value;
+
+  if(!subject||!start||!end){alert('Заполните все обязательные поля');return}
+
+  const days=[];
+  [0,1,2,3,4,5,6].forEach(d=>{
+    if(document.getElementById('day-'+d).checked)days.push(d);
+  });
+  if(!days.length){alert('Выберите хотя бы один день недели');return}
+
+  // Generate lessons
+  const startDate=new Date(start+'T00:00:00');
+  const endDate=new Date(end+'T00:00:00');
+  let count=0;
+
+  for(let d=new Date(startDate);d<=endDate;d.setDate(d.getDate()+1)){
+    const dayOfWeek=d.getDay();
+    if(days.includes(dayOfWeek)){
+      const ds=d.toISOString().slice(0,10);
+      const lid=Date.now().toString(36)+Math.random().toString(36).slice(2,6)+count;
+      DATA.lessons.push({id:lid,studentId,subject,date:ds,time});
+      count++;
+    }
+  }
+
+  await saveData();closeAll();render();
+  alert(`Создано занятий: ${count}`);
+}
+
 // ===== ATTENDANCE VIEW =====
 function renderAtt(){
   const c=document.getElementById('att-content');
@@ -517,6 +617,44 @@ function renderAtt(){
     });
     h+='</tbody></table></div></div></div>';
   });
+  c.innerHTML=h;
+}
+
+// ===== STATISTICS =====
+function renderStats(){
+  const c=document.getElementById('stats-content');
+  if(!DATA.students.length||!DATA.lessons.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для просмотра статистики</div>';return}
+
+  // Calculate stats for each student
+  const stats=DATA.students.map(s=>{
+    const lessons=DATA.lessons.filter(l=>l.studentId===s.id);
+    const total=lessons.length;
+    const keys=lessons.map(l=>l.date+'_'+l.studentId+'_'+l.subject);
+    const attended=keys.filter(k=>DATA.attendance[k]===true).length;
+    const absent=keys.filter(k=>DATA.attendance[k]===false).length;
+    const unmarked=total-attended-absent;
+    const percent=total>0?Math.round((attended/total)*100):0;
+    return {student:s,total,attended,absent,unmarked,percent};
+  }).filter(st=>st.total>0).sort((a,b)=>a.percent-b.percent);
+
+  if(!stats.length){c.innerHTML='<div class="empty">Нет данных для статистики</div>';return}
+
+  let h='<div class="stat-grid">';
+  stats.forEach(st=>{
+    const s=st.student;
+    const pColor=st.percent>=80?'good':st.percent>=60?'':'bad';
+    h+='<div class="stat-card">';
+    h+='<div class="stat-name">'+s.name+'</div>';
+    if(s.group)h+='<div class="stat-group">Группа: '+s.group+'</div>';
+    h+='<div class="percent-big '+pColor+'">'+st.percent+'%</div>';
+    h+='<div class="progress-bar"><div class="progress-fill" style="width:'+st.percent+'%"></div></div>';
+    h+='<div class="stat-row"><span class="stat-label">Всего занятий:</span><span class="stat-value">'+st.total+'</span></div>';
+    h+='<div class="stat-row"><span class="stat-label">Посещено:</span><span class="stat-value good">'+st.attended+'</span></div>';
+    h+='<div class="stat-row"><span class="stat-label">Пропущено:</span><span class="stat-value bad">'+st.absent+'</span></div>';
+    if(st.unmarked>0)h+='<div class="stat-row"><span class="stat-label">Не отмечено:</span><span class="stat-value">'+st.unmarked+'</span></div>';
+    h+='</div>';
+  });
+  h+='</div>';
   c.innerHTML=h;
 }
 
