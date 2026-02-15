@@ -198,12 +198,26 @@
   </div>
 </div>
 
+
+<!-- ===== Absence Comment Modal ===== -->
+<div class="overlay" id="m-comment" onclick="if(event.target===this)closeAll()">
+  <div class="modal">
+    <h3><span>Комментарий к пропуску</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <div class="form-row"><label>Причина пропуска</label><textarea id="f-comment" rows="3" placeholder="Болезнь, семейные обстоятельства..."></textarea></div>
+    <div class="form-actions">
+      <button class="btn" onclick="closeAll()">Отмена</button>
+      <button class="btn btn-primary" onclick="saveComment()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== Add Lesson Modal ===== -->
 <div class="overlay" id="m-lesson" onclick="if(event.target===this)closeAll()">
   <div class="modal">
     <h3><span>Добавить занятие</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
     <div class="form-row"><label>Ученик</label><select id="f-lstudent"></select></div>
     <div class="form-row"><label>Предмет</label><input id="f-lsubject" placeholder="математика"></div>
+    <div class="form-row"><label>Преподаватель</label><input id="f-lteacher" placeholder="Иванова Е.В."></div>
     <div class="form-row"><label>Дата</label><input id="f-ldate" type="date"></div>
     <div class="form-row"><label>Время (необязательно)</label><input id="f-ltime" type="time"></div>
     <div class="form-actions">
@@ -216,9 +230,10 @@
 <!-- ===== Recurring Lessons Modal ===== -->
 <div class="overlay" id="m-recurring" onclick="if(event.target===this)closeAll()">
   <div class="modal">
-    <h3><span>Создать занятия по расписанию</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
+    <h3><span>Повторяющееся занятие</span><button class="modal-x" onclick="closeAll()">&times;</button></h3>
     <div class="form-row"><label>Ученик</label><select id="f-rstudent"></select></div>
     <div class="form-row"><label>Предмет</label><input id="f-rsubject" placeholder="математика"></div>
+    <div class="form-row"><label>Преподаватель</label><input id="f-rteacher" placeholder="Иванова Е.В."></div>
     <div class="form-row"><label>Время (необязательно)</label><input id="f-rtime" type="time"></div>
     <div class="form-row">
       <label>Дни недели</label>
@@ -233,6 +248,11 @@
       </div>
     </div>
     <div class="form-row"><label>Начало периода</label><input id="f-rstart" type="date"></div>
+    <div class="form-row">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="f-rinfinite" onchange="document.getElementById('f-rend').disabled=this.checked;if(this.checked)document.getElementById('f-rend').value=''"> Бессрочно
+      </label>
+    </div>
     <div class="form-row"><label>Конец периода</label><input id="f-rend" type="date"></div>
     <div class="form-actions">
       <button class="btn" onclick="closeAll()">Отмена</button>
@@ -246,7 +266,7 @@ const MR=['Январь','Февраль','Март','Апрель','Май','И
 const DR=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const DF=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
 
-let DATA={students:[],lessons:[],attendance:{}};
+let DATA={students:[],lessons:[],attendance:{},recurring:[],absenceComments:{}};
 let curY,curM,editStudentId=null;
 let useServer=false;
 
@@ -259,6 +279,8 @@ async function loadData(){
   if(saved){
     try{
       DATA=JSON.parse(saved);
+      if(!DATA.recurring)DATA.recurring=[];
+      if(!DATA.absenceComments)DATA.absenceComments={};
       if(DATA.students&&DATA.students.length>0){
         // Have data in localStorage, use it
         useServer=false;
@@ -299,6 +321,8 @@ async function loadData(){
   if(!DATA.students)DATA.students=[];
   if(!DATA.lessons)DATA.lessons=[];
   if(!DATA.attendance)DATA.attendance={};
+  if(!DATA.recurring)DATA.recurring=[];
+  if(!DATA.absenceComments)DATA.absenceComments={};
 }
 async function saveData(){
   // Save to localStorage always
@@ -367,7 +391,7 @@ function renderCal(){
 function fmtD(y,m,d){return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0')}
 
 function mkCell(day,ds,other,isToday){
-  const les=getLessonsForDate(ds);
+  const les=getAllLessonsForDate(ds);
   const cls=['cal-cell'];if(other)cls.push('other');if(isToday)cls.push('today');
   let h='<div class="'+cls.join(' ')+'" onclick="showDay(\''+ds+'\')">';
   h+='<div class="cal-day">'+day+'</div>';
@@ -376,14 +400,14 @@ function mkCell(day,ds,other,isToday){
     const s=getStudent(l.studentId);
     const att=DATA.attendance[l.date+'_'+l.studentId+'_'+l.subject];
     let ac=att===true?'ok':att===false?'no':'';
-    h+='<div class="cal-ev ind '+ac+'">'+(s?s.name.split(' ').pop():'')+': '+l.subject+'</div>';
+    h+='<div class="cal-ev ind '+ac+'">'+(s?s.name.split(' ').pop():'')+': '+l.subject+(l.teacher?' ('+l.teacher+')':'')+'</div>';
   });
   if(les.length>mx)h+='<div class="cal-more">+' +(les.length-mx)+' ещё</div>';
   h+='</div>';return h;
 }
 
 function showDay(ds){
-  const les=getLessonsForDate(ds);
+  const les=getAllLessonsForDate(ds);
   if(!les.length)return;
   const d=new Date(ds+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
   document.getElementById('m-day-title').textContent=DF[di]+', '+d.getDate()+' '+MR[d.getMonth()].toLowerCase()+' '+d.getFullYear();
@@ -392,25 +416,56 @@ function showDay(ds){
     const s=getStudent(l.studentId);
     const key=l.date+'_'+l.studentId+'_'+l.subject;
     const att=DATA.attendance[key];
-    h+='<div class="lesson-row">';
-    h+='<div style="flex:1"><strong>'+(s?s.name:'?')+'</strong> — '+l.subject+(l.time?' ('+l.time+')':'')+'</div>';
-    h+='<span class="att-dot '+(att===true?'yes':att===false?'no':'')+'" onclick="toggleAtt(\''+key+'\',this)" title="Клик = отметить">'+(att===true?'+':att===false?'-':'?')+'</span>';
+    const comment=DATA.absenceComments[key];
+    h+='<div class="lesson-row" style="flex-wrap:wrap">';
+    h+='<div style="flex:1"><strong>'+(s?s.name:'?')+'</strong> — '+l.subject+(l.time?' ('+l.time+')':'')+(l.teacher?' <span style="color:var(--gray);font-size:12px">['+l.teacher+']</span>':'')+'</div>';
+    h+='<span class="att-dot '+(att===true?'yes':att===false?'no':'')+'" onclick="toggleAtt(\''+key+'\',this,\''+ds+'\')" title="Клик = отметить">'+(att===true?'+':att===false?'-':'?')+'</span>';
+    if(att===false&&comment){
+      h+='<div style="width:100%;font-size:12px;color:var(--gray);margin-top:2px;padding-left:4px">Причина: '+comment+'</div>';
+    }
     h+='</div>';
   });
   document.getElementById('m-day-body').innerHTML=h;
   document.getElementById('m-day').classList.add('open');
 }
 
-async function toggleAtt(key,el){
+let pendingCommentKey='',pendingCommentDs='';
+
+async function toggleAtt(key,el,ds){
   const cur=DATA.attendance[key];
-  if(cur===true)DATA.attendance[key]=false;
-  else if(cur===false)delete DATA.attendance[key];
-  else DATA.attendance[key]=true;
-  await saveData();
+  if(cur===true){
+    // was attended → now absent → ask for comment
+    DATA.attendance[key]=false;
+    await saveData();
+    pendingCommentKey=key;
+    pendingCommentDs=ds||'';
+    document.getElementById('f-comment').value=DATA.absenceComments[key]||'';
+    document.getElementById('m-comment').classList.add('open');
+  }else if(cur===false){
+    delete DATA.attendance[key];
+    delete DATA.absenceComments[key];
+    await saveData();
+  }else{
+    DATA.attendance[key]=true;
+    await saveData();
+  }
   const v=DATA.attendance[key];
   el.className='att-dot '+(v===true?'yes':v===false?'no':'');
   el.textContent=v===true?'+':v===false?'-':'?';
   renderCal();
+}
+
+async function saveComment(){
+  const comment=document.getElementById('f-comment').value.trim();
+  if(comment){
+    DATA.absenceComments[pendingCommentKey]=comment;
+  }else{
+    delete DATA.absenceComments[pendingCommentKey];
+  }
+  await saveData();
+  document.getElementById('m-comment').classList.remove('open');
+  // Refresh day modal if open
+  if(pendingCommentDs)showDay(pendingCommentDs);
 }
 
 // ===== STUDENTS =====
@@ -423,8 +478,9 @@ function renderStudents(){
   let h='';
   DATA.students.forEach(s=>{
     const lesCount=DATA.lessons.filter(l=>l.studentId===s.id).length;
+    const recCount=DATA.recurring?DATA.recurring.filter(r=>r.studentId===s.id&&r.active).length:0;
     h+='<div class="card"><div class="card-hdr" onclick="togCard(\'s'+s.id+'\')">';
-    h+='<div><div class="student-name">'+s.name+'</div><div class="student-info">'+s.desc+' | Занятий: '+lesCount+(s.group?' | Группа: '+s.group:'')+'</div></div>';
+    h+='<div><div class="student-name">'+s.name+'</div><div class="student-info">'+s.desc+' | Занятий: '+lesCount+(recCount?' | Повторяющихся: '+recCount:'')+(s.group?' | Группа: '+s.group:'')+'</div></div>';
     h+='<div style="display:flex;gap:6px"><button class="btn btn-sm" onclick="event.stopPropagation();editStudent(\''+s.id+'\')">Ред.</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();delStudent(\''+s.id+'\')">X</button></div>';
     h+='</div><div class="card-body'+(openCards['s'+s.id]?' open':'')+'" id="cb-s'+s.id+'">';
     const les=DATA.lessons.filter(l=>l.studentId===s.id).sort((a,b)=>a.date.localeCompare(b.date));
@@ -433,10 +489,11 @@ function renderStudents(){
         const d=new Date(l.date+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
         const key=l.date+'_'+l.studentId+'_'+l.subject;
         const att=DATA.attendance[key];
+        const comment=att===false&&DATA.absenceComments[key]?DATA.absenceComments[key]:'';
         h+='<div class="lesson-row"><div style="min-width:100px;color:var(--gray)">'+d.getDate()+'.'+String(d.getMonth()+1).padStart(2,'0')+' '+DR[di]+'</div>';
-        h+='<div style="flex:1;font-weight:500">'+l.subject+'</div>';
+        h+='<div style="flex:1;font-weight:500">'+l.subject+(l.teacher?' <span style="color:var(--gray);font-size:11px">['+l.teacher+']</span>':'')+'</div>';
         h+=(l.time?'<div style="color:var(--gray);font-size:12px">'+l.time+'</div>':'');
-        h+='<span class="badge '+(att===true?'badge-ok':att===false?'badge-no':'badge-gray')+'">'+(att===true?'пришёл':att===false?'пропуск':'—')+'</span></div>';
+        h+='<span class="badge '+(att===true?'badge-ok':att===false?'badge-no':'badge-gray')+'" '+(comment?'title="'+comment+'"':'')+' >'+(att===true?'пришёл':att===false?'пропуск':'—')+'</span></div>';
       });
     }else h+='<div class="empty">Занятий пока нет</div>';
     h+='</div></div>';
@@ -487,37 +544,66 @@ async function delStudent(id){
   if(!confirm('Удалить ученика и все его занятия?'))return;
   DATA.students=DATA.students.filter(s=>s.id!==id);
   DATA.lessons=DATA.lessons.filter(l=>l.studentId!==id);
-  // clean attendance
+  if(DATA.recurring)DATA.recurring=DATA.recurring.filter(r=>r.studentId!==id);
+  // clean attendance and comments
   Object.keys(DATA.attendance).forEach(k=>{if(k.includes('_'+id+'_'))delete DATA.attendance[k]});
+  Object.keys(DATA.absenceComments).forEach(k=>{if(k.includes('_'+id+'_'))delete DATA.absenceComments[k]});
   await saveData();render();
 }
 
 // ===== SCHEDULE =====
 function renderSchedule(){
   const c=document.getElementById('schedule-list');
-  if(!DATA.lessons.length){c.innerHTML='<div class="empty">Нет занятий. Нажмите "Добавить занятие".</div>';return}
-  // group by student
-  const byStudent={};
-  DATA.lessons.forEach(l=>{
-    if(!byStudent[l.studentId])byStudent[l.studentId]=[];
-    byStudent[l.studentId].push(l);
-  });
+  const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+
+  // Recurring rules section
   let h='';
-  Object.keys(byStudent).forEach(sid=>{
-    const s=getStudent(sid);
-    const les=byStudent[sid].sort((a,b)=>a.date.localeCompare(b.date));
-    h+='<div class="card"><div class="card-hdr" onclick="togCard(\'l'+sid+'\')">';
-    h+='<div><div class="student-name">'+(s?s.name:'Удалённый ученик')+'</div><div class="student-info">'+les.length+' занятий</div></div></div>';
-    h+='<div class="card-body'+(openCards['l'+sid]?' open':'')+'" id="cb-l'+sid+'">';
-    les.forEach(l=>{
-      const d=new Date(l.date+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
-      h+='<div class="lesson-row"><div style="min-width:100px;color:var(--gray)">'+d.getDate()+'.'+String(d.getMonth()+1).padStart(2,'0')+' '+DR[di]+'</div>';
-      h+='<div style="flex:1;font-weight:500">'+l.subject+'</div>';
-      h+=(l.time?'<div style="color:var(--gray);font-size:12px">'+l.time+'</div>':'');
-      h+='<button class="btn btn-sm btn-danger" onclick="delLesson(\''+l.id+'\')">X</button></div>';
+  if(DATA.recurring&&DATA.recurring.length){
+    h+='<div class="section-title" style="margin-top:0;margin-bottom:8px">Повторяющиеся занятия</div>';
+    DATA.recurring.forEach(r=>{
+      const s=getStudent(r.studentId);
+      const daysStr=r.days.map(d=>dayNames[d]).join(', ');
+      const statusColor=r.active?'var(--success)':'var(--gray)';
+      const statusText=r.active?'Активно':'Завершено'+(r.endDate?' (до '+r.endDate+')':'');
+      h+='<div class="card" style="margin-bottom:8px"><div style="padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">';
+      h+='<div style="flex:1"><strong>'+(s?s.name:'?')+'</strong> — '+r.subject+(r.teacher?' <span style="color:var(--gray);font-size:12px">['+r.teacher+']</span>':'');
+      h+='<div style="font-size:12px;color:var(--gray)">'+daysStr+(r.time?' в '+r.time:'')+' | с '+r.startDate+(r.endDate?' до '+r.endDate:' (бессрочно)')+'</div></div>';
+      h+='<span style="font-size:12px;color:'+statusColor+';font-weight:500">'+statusText+'</span>';
+      if(r.active){
+        h+=' <button class="btn btn-sm" onclick="stopRecurring(\''+r.id+'\')">Стоп</button>';
+      }
+      h+=' <button class="btn btn-sm btn-danger" onclick="delRecurring(\''+r.id+'\')">X</button>';
+      h+='</div></div>';
     });
-    h+='</div></div>';
-  });
+    h+='<div style="margin-bottom:16px"></div>';
+  }
+
+  if(!DATA.lessons.length&&(!DATA.recurring||!DATA.recurring.length)){c.innerHTML='<div class="empty">Нет занятий. Нажмите "Добавить занятие".</div>';return}
+
+  // Regular lessons grouped by student
+  if(DATA.lessons.length){
+    h+='<div class="section-title" style="margin-bottom:8px">Разовые занятия</div>';
+    const byStudent={};
+    DATA.lessons.forEach(l=>{
+      if(!byStudent[l.studentId])byStudent[l.studentId]=[];
+      byStudent[l.studentId].push(l);
+    });
+    Object.keys(byStudent).forEach(sid=>{
+      const s=getStudent(sid);
+      const les=byStudent[sid].sort((a,b)=>a.date.localeCompare(b.date));
+      h+='<div class="card"><div class="card-hdr" onclick="togCard(\'l'+sid+'\')">';
+      h+='<div><div class="student-name">'+(s?s.name:'Удалённый ученик')+'</div><div class="student-info">'+les.length+' занятий</div></div></div>';
+      h+='<div class="card-body'+(openCards['l'+sid]?' open':'')+'" id="cb-l'+sid+'">';
+      les.forEach(l=>{
+        const d=new Date(l.date+'T00:00:00'),dw=d.getDay(),di=dw===0?6:dw-1;
+        h+='<div class="lesson-row"><div style="min-width:100px;color:var(--gray)">'+d.getDate()+'.'+String(d.getMonth()+1).padStart(2,'0')+' '+DR[di]+'</div>';
+        h+='<div style="flex:1;font-weight:500">'+l.subject+(l.teacher?' <span style="color:var(--gray);font-size:11px">['+l.teacher+']</span>':'')+'</div>';
+        h+=(l.time?'<div style="color:var(--gray);font-size:12px">'+l.time+'</div>':'');
+        h+='<button class="btn btn-sm btn-danger" onclick="delLesson(\''+l.id+'\')">X</button></div>';
+      });
+      h+='</div></div>';
+    });
+  }
   c.innerHTML=h;
 }
 
@@ -525,6 +611,7 @@ function openAddLesson(){
   if(!DATA.students.length){alert('Сначала добавьте ученика');return}
   const sel=document.getElementById('f-lstudent');
   sel.innerHTML=DATA.students.map(s=>'<option value="'+s.id+'">'+s.name+'</option>').join('');
+  document.getElementById('f-lteacher').value='';
   document.getElementById('f-lsubject').value='';
   document.getElementById('f-ldate').value='';
   document.getElementById('f-ltime').value='';
@@ -536,8 +623,9 @@ async function saveLesson(){
   const subject=document.getElementById('f-lsubject').value.trim();
   const date=document.getElementById('f-ldate').value;
   const time=document.getElementById('f-ltime').value;
+  const teacher=document.getElementById('f-lteacher').value.trim();
   if(!subject||!date){alert('Заполните предмет и дату');return}
-  DATA.lessons.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),studentId,subject,date,time});
+  DATA.lessons.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),studentId,subject,date,time,teacher});
   await saveData();closeAll();render();
 }
 
@@ -547,14 +635,39 @@ async function delLesson(id){
 }
 
 // ===== RECURRING LESSONS =====
+function getRecurringLessonsForDate(ds){
+  const d=new Date(ds+'T00:00:00');
+  const dow=d.getDay();
+  const result=[];
+  if(!DATA.recurring)return result;
+  DATA.recurring.forEach(r=>{
+    if(!r.active)return;
+    if(!r.days.includes(dow))return;
+    if(ds<r.startDate)return;
+    if(r.endDate&&ds>r.endDate)return;
+    // Check no duplicate with existing lesson
+    const dup=DATA.lessons.some(l=>l.studentId===r.studentId&&l.subject===r.subject&&l.date===ds);
+    if(dup)return;
+    result.push({id:'rec_'+r.id+'_'+ds,studentId:r.studentId,subject:r.subject,date:ds,time:r.time||'',teacher:r.teacher||'',recurringId:r.id});
+  });
+  return result;
+}
+
+function getAllLessonsForDate(ds){
+  return getLessonsForDate(ds).concat(getRecurringLessonsForDate(ds));
+}
+
 function openRecurring(){
   if(!DATA.students.length){alert('Сначала добавьте ученика');return}
   const sel=document.getElementById('f-rstudent');
   sel.innerHTML=DATA.students.map(s=>'<option value="'+s.id+'">'+s.name+'</option>').join('');
+  document.getElementById('f-rteacher').value='';
   document.getElementById('f-rsubject').value='';
   document.getElementById('f-rtime').value='';
   document.getElementById('f-rstart').value='';
   document.getElementById('f-rend').value='';
+  document.getElementById('f-rend').disabled=false;
+  document.getElementById('f-rinfinite').checked=false;
   [0,1,2,3,4,5,6].forEach(d=>document.getElementById('day-'+d).checked=false);
   document.getElementById('m-recurring').classList.add('open');
 }
@@ -563,10 +676,13 @@ async function saveRecurring(){
   const studentId=document.getElementById('f-rstudent').value;
   const subject=document.getElementById('f-rsubject').value.trim();
   const time=document.getElementById('f-rtime').value;
+  const teacher=document.getElementById('f-rteacher').value.trim();
   const start=document.getElementById('f-rstart').value;
-  const end=document.getElementById('f-rend').value;
+  const infinite=document.getElementById('f-rinfinite').checked;
+  const end=infinite?null:document.getElementById('f-rend').value;
 
-  if(!subject||!start||!end){alert('Заполните все обязательные поля');return}
+  if(!subject||!start){alert('Заполните предмет и дату начала');return}
+  if(!infinite&&!end){alert('Укажите конец периода или отметьте «Бессрочно»');return}
 
   const days=[];
   [0,1,2,3,4,5,6].forEach(d=>{
@@ -574,32 +690,54 @@ async function saveRecurring(){
   });
   if(!days.length){alert('Выберите хотя бы один день недели');return}
 
-  // Generate lessons
-  const startDate=new Date(start+'T00:00:00');
-  const endDate=new Date(end+'T00:00:00');
-  let count=0;
-
-  for(let d=new Date(startDate);d<=endDate;d.setDate(d.getDate()+1)){
-    const dayOfWeek=d.getDay();
-    if(days.includes(dayOfWeek)){
-      const ds=d.toISOString().slice(0,10);
-      const lid=Date.now().toString(36)+Math.random().toString(36).slice(2,6)+count;
-      DATA.lessons.push({id:lid,studentId,subject,date:ds,time});
-      count++;
-    }
-  }
+  const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+  const rule={
+    id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    studentId,subject,time,teacher,
+    days,startDate:start,endDate:end,active:true
+  };
+  DATA.recurring.push(rule);
 
   await saveData();closeAll();render();
-  alert(`Создано занятий: ${count}`);
+  alert('Создано повторяющееся занятие: '+subject+' ('+days.map(d=>dayNames[d]).join(', ')+')');
+}
+
+async function stopRecurring(id){
+  const r=DATA.recurring.find(r=>r.id===id);
+  if(!r)return;
+  const today=new Date().toISOString().slice(0,10);
+  r.endDate=today;
+  r.active=false;
+  await saveData();render();
+}
+
+async function delRecurring(id){
+  if(!confirm('Удалить правило повторения?'))return;
+  DATA.recurring=DATA.recurring.filter(r=>r.id!==id);
+  await saveData();render();
 }
 
 // ===== ATTENDANCE VIEW =====
 function renderAtt(){
   const c=document.getElementById('att-content');
-  if(!DATA.students.length||!DATA.lessons.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для отслеживания посещаемости</div>';return}
+  if(!DATA.students.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для отслеживания посещаемости</div>';return}
 
-  // Get all unique dates
-  const allDates=[...new Set(DATA.lessons.map(l=>l.date))].sort();
+  // Collect all dates that have lessons (regular + recurring)
+  const dateSet=new Set(DATA.lessons.map(l=>l.date));
+  // Add dates from recurring rules for current month range
+  if(DATA.recurring){
+    // Generate dates for past 6 months and next 1 month
+    const now=new Date();
+    const rangeStart=new Date(now.getFullYear(),now.getMonth()-6,1);
+    const rangeEnd=new Date(now.getFullYear(),now.getMonth()+2,0);
+    for(let d=new Date(rangeStart);d<=rangeEnd;d.setDate(d.getDate()+1)){
+      const ds=fmtD(d.getFullYear(),d.getMonth(),d.getDate());
+      const recLes=getRecurringLessonsForDate(ds);
+      if(recLes.length)dateSet.add(ds);
+    }
+  }
+
+  const allDates=[...dateSet].sort();
   if(!allDates.length){c.innerHTML='<div class="empty">Нет занятий</div>';return}
 
   // Group by month
@@ -623,29 +761,61 @@ function renderAtt(){
     h+='</tr></thead><tbody>';
 
     DATA.students.forEach(s=>{
-      // Check if student has any lessons on these dates
-      const hasLessons=dates.some(ds=>DATA.lessons.some(l=>l.studentId===s.id&&l.date===ds));
+      const hasLessons=dates.some(ds=>getAllLessonsForDate(ds).some(l=>l.studentId===s.id));
       if(!hasLessons)return;
 
       h+='<tr><td>'+s.name+'</td>';
       dates.forEach(ds=>{
-        const sLessons=DATA.lessons.filter(l=>l.studentId===s.id&&l.date===ds);
-        if(!sLessons.length){h+='<td>—</td>';return}
-        // Summarize: all attended, some, none
+        const sLessons=getAllLessonsForDate(ds).filter(l=>l.studentId===s.id);
+        if(!sLessons.length){h+='<td>\u2014</td>';return}
         const keys=sLessons.map(l=>l.date+'_'+l.studentId+'_'+l.subject);
         const attended=keys.filter(k=>DATA.attendance[k]===true).length;
         const total=keys.length;
+        // Collect comments for absent
+        const comments=keys.filter(k=>DATA.attendance[k]===false&&DATA.absenceComments[k]).map(k=>DATA.absenceComments[k]);
+        const commentTitle=comments.length?' | '+comments.join('; '):'';
         if(attended===total&&total>0)h+='<td><span class="att-dot yes" title="'+attended+'/'+total+'">+</span></td>';
-        else if(attended>0)h+='<td><span class="att-dot" style="background:#fef3c7;color:#92400e" title="'+attended+'/'+total+'">~</span></td>';
+        else if(attended>0)h+='<td><span class="att-dot" style="background:#fef3c7;color:#92400e" title="'+attended+'/'+total+commentTitle+'">~</span></td>';
         else{
           const absent=keys.filter(k=>DATA.attendance[k]===false).length;
-          if(absent>0)h+='<td><span class="att-dot no" title="отмечен пропуск">-</span></td>';
+          if(absent>0)h+='<td><span class="att-dot no" title="пропуск'+commentTitle+'">-</span></td>';
           else h+='<td><span class="att-dot" title="не отмечено">?</span></td>';
         }
       });
       h+='</tr>';
     });
-    h+='</tbody></table></div></div></div>';
+    h+='</tbody></table></div></div>';
+
+    // Absence summary with reasons for this month
+    const absentList=[];
+    dates.forEach(ds=>{
+      DATA.students.forEach(s=>{
+        const sLessons=getAllLessonsForDate(ds).filter(l=>l.studentId===s.id);
+        sLessons.forEach(l=>{
+          const key=l.date+'_'+l.studentId+'_'+l.subject;
+          if(DATA.attendance[key]===false){
+            const comment=DATA.absenceComments[key]||'';
+            const d=new Date(ds+'T00:00:00');
+            absentList.push({name:s.name,date:d.getDate()+'.'+(d.getMonth()+1),subject:l.subject,comment});
+          }
+        });
+      });
+    });
+    if(absentList.length){
+      h+='<div style="margin-top:8px;padding:12px 16px;background:var(--danger-light);border-radius:8px;font-size:13px">';
+      h+='<strong style="color:var(--danger)">Пропуски:</strong>';
+      h+='<div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">';
+      absentList.forEach(a=>{
+        h+='<div style="display:flex;gap:8px;align-items:baseline">';
+        h+='<span style="min-width:50px;color:var(--gray)">'+a.date+'</span>';
+        h+='<span style="font-weight:500">'+a.name+'</span>';
+        h+='<span style="color:var(--gray)">'+a.subject+'</span>';
+        if(a.comment)h+='<span style="color:var(--danger);font-style:italic"> — '+a.comment+'</span>';
+        h+='</div>';
+      });
+      h+='</div></div>';
+    }
+    h+='</div>';
   });
   c.innerHTML=h;
 }
@@ -653,18 +823,45 @@ function renderAtt(){
 // ===== STATISTICS =====
 function renderStats(){
   const c=document.getElementById('stats-content');
-  if(!DATA.students.length||!DATA.lessons.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для просмотра статистики</div>';return}
+  if(!DATA.students.length){c.innerHTML='<div class="empty">Добавьте учеников и занятия для просмотра статистики</div>';return}
 
-  // Calculate stats for each student
+  // Collect all lesson dates (regular + recurring) up to today
+  const today=new Date().toISOString().slice(0,10);
+  const allLessonsByStudent={};
+
+  // Regular lessons
+  DATA.lessons.forEach(l=>{
+    if(l.date>today)return;
+    if(!allLessonsByStudent[l.studentId])allLessonsByStudent[l.studentId]=[];
+    allLessonsByStudent[l.studentId].push(l);
+  });
+
+  // Recurring virtual lessons (past only, up to today)
+  if(DATA.recurring){
+    const earliest=DATA.recurring.reduce((min,r)=>r.startDate<min?r.startDate:min,today);
+    const startD=new Date(earliest+'T00:00:00');
+    const endD=new Date(today+'T00:00:00');
+    for(let d=new Date(startD);d<=endD;d.setDate(d.getDate()+1)){
+      const ds=fmtD(d.getFullYear(),d.getMonth(),d.getDate());
+      const recLes=getRecurringLessonsForDate(ds);
+      recLes.forEach(l=>{
+        if(!allLessonsByStudent[l.studentId])allLessonsByStudent[l.studentId]=[];
+        allLessonsByStudent[l.studentId].push(l);
+      });
+    }
+  }
+
   const stats=DATA.students.map(s=>{
-    const lessons=DATA.lessons.filter(l=>l.studentId===s.id);
+    const lessons=allLessonsByStudent[s.id]||[];
     const total=lessons.length;
     const keys=lessons.map(l=>l.date+'_'+l.studentId+'_'+l.subject);
     const attended=keys.filter(k=>DATA.attendance[k]===true).length;
     const absent=keys.filter(k=>DATA.attendance[k]===false).length;
     const unmarked=total-attended-absent;
     const percent=total>0?Math.round((attended/total)*100):0;
-    return {student:s,total,attended,absent,unmarked,percent};
+    // Collect absence reasons
+    const reasons=keys.filter(k=>DATA.attendance[k]===false&&DATA.absenceComments[k]).map(k=>DATA.absenceComments[k]);
+    return {student:s,total,attended,absent,unmarked,percent,reasons};
   }).filter(st=>st.total>0).sort((a,b)=>a.percent-b.percent);
 
   if(!stats.length){c.innerHTML='<div class="empty">Нет данных для статистики</div>';return}
@@ -682,6 +879,11 @@ function renderStats(){
     h+='<div class="stat-row"><span class="stat-label">Посещено:</span><span class="stat-value good">'+st.attended+'</span></div>';
     h+='<div class="stat-row"><span class="stat-label">Пропущено:</span><span class="stat-value bad">'+st.absent+'</span></div>';
     if(st.unmarked>0)h+='<div class="stat-row"><span class="stat-label">Не отмечено:</span><span class="stat-value">'+st.unmarked+'</span></div>';
+    if(st.reasons.length){
+      h+='<div style="margin-top:8px;font-size:12px;color:var(--gray)"><strong>Причины пропусков:</strong><ul style="margin:4px 0 0 16px">';
+      st.reasons.forEach(r=>{h+='<li>'+r+'</li>'});
+      h+='</ul></div>';
+    }
     h+='</div>';
   });
   h+='</div>';

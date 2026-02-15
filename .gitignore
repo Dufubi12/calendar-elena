@@ -6,3 +6,5 @@ node_modules/
 .claude/
 Temploy/.agent/
 Temploy/.vscode/
+.vercel
+.env*.local
